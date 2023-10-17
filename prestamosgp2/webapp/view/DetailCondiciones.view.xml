@@ -1,0 +1,97 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" controllerName="prestamosgp2.controller.DetailCondiciones" xmlns="sap.m" xmlns:layout="sap.ui.layout">
+    <Page id="idTitleCondiciones1" title="Simulación Préstamos Actuales" showHeader="true" showFooter="true" showNavButton="false">
+        <content>
+            <Table width="auto" noDataText="No data" mode="None" showSeparators="All" growing="true" growingThreshold="20" growingScrollToLoad="true" class="sapUiResponsiveMargin" inset="true">
+                <infoToolbar/>
+                <headerToolbar>
+                    <OverflowToolbar id="idToolbarCondiciones" width="100%" height="2rem" design="Transparent" visible="true" enabled="true">
+                        <content>
+                            <Title text="PRÉSTAMOS VIVIENDA ACTUALES" titleStyle="Auto" width="auto" textAlign="Begin" visible="true" wrapping="false"/>
+                            <ToolbarSpacer width=""/>
+                        </content>
+                    </OverflowToolbar>
+                </headerToolbar>
+                <columns>
+                    <Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                        <header>
+                            <Text text="Número Préstamo" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                        </header>
+                        <footer/>
+                    </Column>
+                    <Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                        <header>
+                            <Text text="Fecha Inicio" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                        </header>
+                        <footer/>
+                    </Column>
+                    <Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                        <header>
+                            <Text text="Fechpa Fin" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                        </header>
+                        <footer/>
+                    </Column>
+                    <Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                        <header>
+                            <Text text="Importe Préstamo" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                        </header>
+                        <footer/>
+                    </Column>
+                    <Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                        <header>
+                            <Text text="Condición Préstamo" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                        </header>
+                        <footer/>
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem type="Active">
+                        <cells>
+                            <ObjectIdentifier title="01" text="" titleActive="false" visible="true"/>
+                            <Text text="01.01.2023" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                            <Text text="30.06.2051" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                            <ObjectNumber number="220.000" unit="EUR" emphasized="true" state="None"/>
+                            <Text text="Cuota Constante" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                            <layout:HorizontalLayout>
+                                <layout:content/>
+                            </layout:HorizontalLayout>
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+            <Button id="idSBDetailCondiciones1" text="Acceder a Simulación" type="Accept" iconFirst="true" width="100%" enabled="true" visible="true" iconDensityAware="false" press="_onButtonPress"/>
+            <!-- <List mode="SingleSelectMaster" width="100%" headerText="" footerText="" backgroundDesign="Solid" showSeparators="All" growing="true" growingThreshold="20" growingScrollToLoad="true" visible="true">
+                <infoToolbar>
+                    <Toolbar width="100%" height="auto" design="Auto" visible="false" enabled="true">
+                        <content>
+                            <Label text="Label" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                        </content>
+                    </Toolbar>
+                </infoToolbar>
+                <headerToolbar/>
+                <items>
+                    <StandardListItem icon="sap-icon://multi-select" title="Seleccione el préstamo sobre el que desea realizar una simulación de amortización o de reducción de años" description="" info="" infoState="None" type="Active" selected="false" visible="true"/>
+                </items>
+            </List> -->
+        </content>
+        <footer>
+            <OverflowToolbar width="100%" height="46px" design="Auto" enabled="true" visible="true">
+                <content>
+                    <List mode="SingleSelectMaster" width="100%" headerText="" footerText="" backgroundDesign="Solid" showSeparators="All" growing="true" growingThreshold="20" growingScrollToLoad="true" visible="true">
+                        <infoToolbar>
+                            <Toolbar width="100%" height="auto" design="Auto" visible="false" enabled="true">
+                                <content>
+                                    <Label text="Label" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                </content>
+                            </Toolbar>
+                        </infoToolbar>
+                        <headerToolbar/>
+                        <items>
+                            <StandardListItem icon="sap-icon://multi-select" title="Seleccione el préstamo sobre el que desea realizar una simulación de amortización o de reducción de años" description="" info="" infoState="None" type="Active" selected="false" visible="true"/>
+                        </items>
+                    </List>
+                </content>
+            </OverflowToolbar>
+        </footer>
+        <headerContent/>
+    </Page>
+</mvc:View>

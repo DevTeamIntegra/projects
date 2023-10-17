@@ -1,0 +1,53 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" controllerName="prestamosgp.controller.DetailConsumo" xmlns="sap.m">
+    <Page id="idTitleCuadro1" title="Simulación Préstamos Consumo" showHeader="true" showFooter="true" showNavButton="false">
+        <content>
+            <List id="idListConsumo" mode="None" width="100%" headerText="SIMULACIÓN DE PRÉSTAMO DE CONSUMO" footerText="" backgroundDesign="Solid" showSeparators="All" growing="true" growingThreshold="20" growingScrollToLoad="true" inset="true">
+                <infoToolbar/>
+                <headerToolbar/>
+                <items>
+                    <InputListItem label="Tipo de préstamo:" visible="true">
+                        <content>
+                            <Input value="CONSUMO" type="Text" showValueHelp="false" enabled="false" visible="true" width="auto" valueHelpOnly="false" required="false" valueStateText="Invalid entry" maxLength="0"/>
+                        </content>
+                    </InputListItem>
+                    <InputListItem label="Fecha de Inicio" visible="true">
+                        <content>
+                            <DatePicker width="auto" displayFormat="medium" required="false" valueStateText="Invalid entry" enabled="true" visible="true" valueFormat="yyyyMMdd"/>
+                        </content>
+                    </InputListItem>
+                    <InputListItem label="Mensualidades: *" visible="true">
+                        <content>
+                            <Slider min="1" max="6" value="0" step="1" enabled="true" visible="true" width="200px" progress="true"/>
+                        </content>
+                    </InputListItem>
+                    <InputListItem label="" visible="true">
+                        <content>
+                            <CheckBox text="Añadir una mensualidad" selected="true" editable="true" enabled="true" visible="true" width="auto" textDirection="LTR" wrapping="false" useEntireWidth="true"/>
+                        </content>
+                    </InputListItem>
+                </items>
+            </List>
+            <Button id="idSBDetailConsumo1" text="Simular" type="Default" iconFirst="true" width="100%" enabled="true" visible="true" iconDensityAware="false" press="_onButtonPress"/>
+        </content>
+        <footer>
+            <OverflowToolbar width="100%" height="auto" design="Auto" enabled="true" visible="true">
+                <content>
+                    <List mode="SingleSelectMaster" width="100%" headerText="" footerText="" backgroundDesign="Solid" showSeparators="All" growing="true" growingThreshold="20" growingScrollToLoad="true" visible="true">
+                        <infoToolbar>
+                            <Toolbar width="100%" height="auto" design="Auto" visible="false" enabled="true">
+                                <content>
+                                    <Label text="Label" design="Standard" width="100%" required="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                                </content>
+                            </Toolbar>
+                        </infoToolbar>
+                    <headerToolbar/>
+                        <items>
+                            <StandardListItem icon="sap-icon://notes" title="* Las mensualidades pueden ir de 1 a 6 meses" description="" info="" infoState="None" type="Active" selected="false" visible="true"/>
+                        </items>
+                    </List>
+                </content>
+            </OverflowToolbar>
+        </footer>
+        <headerContent/>
+    </Page>
+</mvc:View>

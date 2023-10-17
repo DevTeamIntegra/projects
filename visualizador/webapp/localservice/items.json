@@ -1,0 +1,19 @@
+{
+    "results": [
+        {
+            "Id": "ID2022",
+            "Texto": "Ficha de Personal 2022",
+            "Smartform": "ZHR_900_DOSSIER_COMP_2023",
+            "Periodo": "202201",
+            "Selected": true
+        },
+        {
+            "Id": "ID2021",
+            "Texto": "Ficha de Personal 2021",
+            "Smartform": "ZHR_900_DOSSIER_COMP_2022",
+            "Periodo": "202101",
+            "Selected": false
+        }
+    ]
+}
+  

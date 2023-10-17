@@ -1,0 +1,29 @@
+{
+    "results": [
+        {
+            "Id": "titleh_title",
+            "Descripcion": "Ficha de Personal de ICO"
+        },
+        {
+            "Id": "view_IDGenDetailPage1_title",
+            "Descripcion": "Ficha de Personal"
+        },
+        {
+            "Id": "view_controller_msg1_text",
+            "Descripcion": "No existen certificados de retenciones en el sistema"
+        },
+        {
+            "Id": "view_controller_msg2_text",
+            "Descripcion": "Se ha producido un error en la aplicación..."
+        },
+        {
+            "Id": "view_filterBarLabel_text",
+            "Descripcion": "Seleccione un ejercicio"
+        },
+        {
+            "Id": "view_page_title",
+            "Descripcion": "Inicio"
+        }
+    ]
+}
+  

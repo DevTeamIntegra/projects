@@ -1,0 +1,105 @@
+<mvc:View
+    controllerName="visualizador.controller.View"
+    height="100%"
+    xmlns:core="sap.ui.core"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:semantic="sap.m.semantic"
+    displayBlock="true"
+    xmlns:layout="sap.ui.layout">
+<Shell id="shell">
+<App id="app" class="myApp">
+<pages>
+    <Page id="titleh_title" title="">
+        <content>
+            <layout:FixFlex id="layoutAltasBajas" minFlexSize="1">
+                <layout:fixContent />
+                <layout:flexContent>
+                    <SplitContainer id="_IDGenSplitContainer1">
+                        <masterPages>
+                            <semantic:MasterPage
+                                id="view_page_title"
+                                title=""
+                                navButtonPress="onNavBack"
+                                showNavButton="true">
+                                <semantic:subHeader>
+                                    <Bar id="headerBar">
+                                        <contentMiddle>
+                                            <SearchField
+                                                id="searchField"
+                                                showRefreshButton="{= !${device>/support/touch} }"
+                                                tooltip="busqueda"
+                                                width="100%"
+                                                liveChange="onSearch">
+                                            </SearchField>
+                                        </contentMiddle>
+                                    </Bar>
+                                </semantic:subHeader>
+                                <semantic:content>
+                                    <PullToRefresh
+                                        id="pullToRefresh"
+                                        visible="{device>/support/touch}"
+                                        refresh="onRefresh" />
+                                    <List
+                                        id="list"
+                                        items="{ItemSet>/}"
+                                        mode="{= ${device>/system/phone} ? 'None' : 'SingleSelectMaster'}"
+                                        growing="true"
+                                        growingScrollToLoad="true"
+                                        updateFinished="onUpdateFinished"
+                                        selectionChange="onSelectionChange">
+                                        <infoToolbar>
+                                            <Toolbar
+                                                active="true"
+                                                id="filterBar"
+                                                press="onOpenViewSettings">
+                                                <Title
+                                                    id="view_filterBarLabel_text"
+                                                    text="" />
+                                            </Toolbar>
+                                        </infoToolbar>
+                                        <items>
+                                            <ObjectListItem
+                                                id="ObjectListItem"
+                                                type="{= ${device>/system/phone} ? 'Active' : 'Inactive'}"
+                                                press="onSelectionChange"
+                                                title="{ItemSet>Texto}"
+                                                selected="{ItemSet>Selected}"
+                                                >
+                                            </ObjectListItem>
+                                        </items>
+                                    </List>
+                                </semantic:content>
+                               <!-- <semantic:positiveAction>
+                                    <semantic:PositiveAction id="_IDGenPositiveAction1" text="Visualizar resumen" press="onSemanticButtonPress"/>
+                                </semantic:positiveAction> -->
+                            </semantic:MasterPage>
+                        </masterPages>
+                        <detailPages>
+                            <semantic:DetailPage id="view_IDGenDetailPage1_title" title="">
+                                <ScrollContainer id="_IDGenScrollContainer1"
+                                                 height="100%"
+                                                 width="100%"
+                                                 horizontal="true"
+                                                 vertical="true">
+                                    <FlexBox id="_IDGenFlexBox1" direction="Column" renderType="Div" class="sapUiSmallMargin">
+                                        <FlexBox id="_IDGenFlexBox2">
+                                        </FlexBox>
+                                        <PDFViewer id="_IDGenPDFViewer" source="" title="" height="1000px">
+                                            <layoutData>
+                                                <FlexItemData id="_IDGenFlexItemData1" growFactor="1" />
+                                            </layoutData>
+                                        </PDFViewer>
+                                    </FlexBox>
+                                </ScrollContainer>
+                            </semantic:DetailPage>
+                        </detailPages>
+                    </SplitContainer>
+                </layout:flexContent>
+            </layout:FixFlex>
+        </content>
+    </Page>
+    </pages>
+  </App>
+  </Shell>
+</mvc:View>

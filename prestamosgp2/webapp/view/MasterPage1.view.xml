@@ -1,0 +1,43 @@
+<mvc:View xmlns:mvc="sap.ui.core.mvc" controllerName="prestamosgp2.controller.MasterPage1" xmlns="sap.m">
+    <Page id="idTitleMaster" title="Préstamos" showHeader="true" showFooter="true" showNavButton="false">
+        <content>
+            <List mode="None" width="100%" headerText="" footerText="" backgroundDesign="Solid" showSeparators="All" growing="true" growingThreshold="20" growingScrollToLoad="true" visible="true">
+                <infoToolbar/>
+                <headerToolbar/>
+                <items>
+                    <ObjectListItem intro="" title="Cuadro de préstamos" number="" numberUnit="" numberState="None" type="Active" selected="true" showMarkers="false" press="_onObjectListItemPress">
+                        <attributes/>
+                        <firstStatus/>
+                        <secondStatus/>
+                    </ObjectListItem>
+                    <ObjectListItem intro="" title="Simulación Nuevo Préstamo Vivienda" number="" numberUnit="" numberState="None" type="Active" selected="false" showMarkers="false" press="_onObjectListItemPress1">
+                        <attributes/>
+                        <firstStatus/>
+                        <secondStatus/>
+                    </ObjectListItem>
+                    <ObjectListItem intro="" title="Simulación Nuevo Préstamo Consumo" number="" numberUnit="" numberState="None" type="Active" selected="false" showMarkers="false" press="_onObjectListItemPress2">
+                        <attributes/>
+                        <firstStatus/>
+                        <secondStatus/>
+                    </ObjectListItem>
+                    <ObjectListItem intro="" title="Simulación Nuevas Condiciones" number="" numberUnit="" numberState="None" type="Active" selected="false" showMarkers="false" press="_onObjectListItemPress3">
+                        <attributes/>
+                        <firstStatus/>
+                        <secondStatus/>
+                    </ObjectListItem>
+                    <!-- <ObjectListItem intro="" title="Cotitular" number="" numberUnit="" numberState="None" type="Active" selected="true" showMarkers="false" press="_onObjectListItemPress4">
+                        <attributes/>
+                        <firstStatus/>
+                        <secondStatus/>
+                    </ObjectListItem> -->
+                </items>
+            </List>
+        </content>
+        <!-- <footer>
+            <OverflowToolbar width="100%" height="46px" design="Auto" enabled="true" visible="true">
+                <content/>
+            </OverflowToolbar>
+        </footer> -->
+        <headerContent/>
+    </Page>
+</mvc:View>

@@ -1,0 +1,520 @@
+/* Enter your custom styles here */
+:root {
+    --color: grey;
+    --backgroundColor: grey; 
+}
+#application-visualizador-display-component---View--view_IDGenDetailPage1_title-intHeader{
+    background-color: var(--backgroundColor);
+}
+#application-visualizador-display-component---View--view_page_title-intHeader{
+    background-color:var(--color);  
+}
+#application-visualizador-display-component---View--view_IDGenDetailPage1_title-title-inner{
+color: #ffffff;
+font-weight: bold;
+}
+#application-visualizador-display-component---View--view_page_title-title{
+color: #ffffff;
+font-weight: bold;
+}
+#application-visualizador-display-component---View--view_page_title-navButton-iconBtn{
+color: #ffffff;
+}
+#application-visualizador-display-component---View--view_page_title-navButton-inner{
+color: grey;
+}
+.sapMListInfoTBarContainer{
+background-color:rgb(117,116,116); 
+}
+#application-visualizador-display-component---View--filterBar{
+background-color:rgb(117,116,116);     
+}
+#application-visualizador-display-component---View--searchField-reset{
+color:var(--color);
+}
+#application-visualizador-display-component---View--searchField-search{
+color:var(--color);  
+}
+#application-visualizador-display-component---View--_IDGenPDFViewer-toolbarDownloadButton-img{
+color:var(--color);    
+}
+
+#container-visualizador---View--view_IDGenDetailPage1_title-intHeader{
+    background-color: var(--backgroundColor);
+}
+#container-visualizador---View--view_page_title-intHeader{
+    background-color: var(--backgroundColor);  
+}
+#container-visualizador---View--view_IDGenDetailPage1_title-title-inner{
+color: #ffffff;
+font-weight: bold;
+}
+#container-visualizador---View--view_page_title-title{
+color: #ffffff;
+font-weight: bold;
+}
+#container-visualizador---View--view_page_title-navButton-iconBtn{
+color: #ffffff;
+}
+#container-visualizador---View--view_page_title-navButton-inner{
+color: grey;
+}
+.sapMListInfoTBarContainer{
+background-color:rgb(117,116,116); 
+}
+#container-visualizador---View--filterBar{
+background-color:rgb(117,116,116);     
+}
+
+#container-visualizador---View--searchField-reset{
+    color: var(--backgroundColor);
+}
+#container-visualizador---View--searchField-search{
+    color: var(--backgroundColor); 
+}
+#container-visualizador---View--_IDGenPDFViewer-toolbarDownloadButton-img{
+    color: var(--backgroundColor);   
+}
+#__page0-text{
+    display: none;
+}
+#container-visualizador---View--view_filterBarLabel_text-inner{
+    color: #ffffff;
+    font-weight: bold;    
+}
+
+.sapMLIB.sapMLIBSelected{
+    border-bottom: var(--backgroundColor);
+ }
+
+ .sapMLIB.sapMLIBSelected{
+     background: rgb(237 237 237);
+ }
+ 
+ .sapUiLocalBusyIndicatorAnimation>div::after {
+     background: var(--backgroundColor);
+   
+ } 
+ .sapUiLocalBusyIndicatorAnimation>div::before {
+     background: var(--backgroundColor);
+   
+ }  
+
+#container-visualizador---View--_IDGenPDFViewer-overflowToolbar{
+background-color: #f5f6f7;
+}
+
+#container-visualizador---View--view_IDGenDetailPage1_title-footer{
+background-color: #f5f6f7;    
+}
+#container-visualizador---View--_IDGenMasterPage1-footer{
+background-color: #f5f6f7;  
+}
+
+#container-visualizador---View--titleh_title-intHeader-BarPH {
+    padding-left: 35% !important;
+    position: absolute !important;
+    width: 100% !important;
+    left: 0px !important;
+  }
+
+#container-visualizador---View--titleh_title-intHeader  {
+    background-color:rgb(117,116,116);     
+}
+
+#container-visualizador---View--titleh_title-title-inner{
+color: #ffffff;    
+}
+
+
+
+/*Estilos para visualización en BAS */
+
+/* Enter your custom styles here */
+#application-visualizador-display-component---View--view_IDGenDetailPage1_title-intHeader{
+    background-color: var(--backgroundColor);
+}
+#application-visualizador-display-component---View--view_page_title-intHeader{
+    background-color:var(--backgroundColor); 
+}
+#application-visualizador-display-component---View--view_IDGenDetailPage1_title-title-inner{
+color: #ffffff;
+font-weight: bold;
+}
+#application-visualizador-display-component---View--view_page_title-title{
+color: #ffffff;
+font-weight: bold;
+}
+#application-visualizador-display-component---View--view_page_title-navButton-iconBtn{
+color: #ffffff;
+}
+#application-visualizador-display-component---View--view_page_title-navButton-inner{
+color: grey;
+}
+.sapMListInfoTBarContainer{
+background-color:rgb(117,116,116); 
+}
+#application-visualizador-display-component---View--filterBar{
+background-color:rgb(117,116,116);     
+}
+#application-visualizador-display-component---View--searchField-reset{
+color:var(--backgroundColor); 
+}
+#application-visualizador-display-component---View--searchField-search{
+color:var(--color);    
+}
+#application-visualizador-display-component---View--_IDGenPDFViewer-toolbarDownloadButton-img{
+color:var(--color);    
+}
+
+#application-visualizador-display-component---View--view_IDGenDetailPage1_title-intHeader{
+    background-color: var(--backgroundColor);
+}
+#application-visualizador-display-component---View--view_page_title-intHeader{
+    background-color:var(--color);   
+}
+#application-visualizador-display-component---View--view_IDGenDetailPage1_title-title-inner{
+color: #ffffff;
+font-weight: bold;
+}
+#application-visualizador-display-component---View--view_page_title-title{
+color: #ffffff;
+font-weight: bold;
+}
+#application-visualizador-display-component---View--view_page_title-navButton-iconBtn{
+color: #ffffff;
+}
+#application-visualizador-display-component---View--view_page_title-navButton-inner{
+color: grey;
+}
+.sapMListInfoTBarContainer{
+background-color:rgb(117,116,116); 
+}
+#application-visualizador-display-component---View--filterBar{
+background-color:rgb(117,116,116);     
+}
+#application-visualizador-display-component---View--searchField-reset{
+color:var(--backgroundColor); 
+}
+#application-visualizador-display-component---View--searchField-search{
+color:var(--color);   
+}
+#application-visualizador-display-component---View--_IDGenPDFViewer-toolbarDownloadButton-img{
+color:var(--color);    
+}
+#__page0-text{
+    display: none;
+}
+#application-visualizador-display-component---View--view_filterBarLabel_text-inner{
+    color: #ffffff;
+    font-weight: bold;    
+}
+
+.sapMLIB.sapMLIBSelected{
+    border-bottom:  rgb(211 55 55);
+ }
+ 
+ .sapMLIB.sapMLIBSelected{
+     background: rgb(237 237 237);
+ }
+ 
+ .sapUiLocalBusyIndicatorAnimation>div::after {
+     background: rgb(229, 49, 56);
+   
+ } 
+ .sapUiLocalBusyIndicatorAnimation>div::before {
+     background: rgb(229, 49, 56);
+   
+ }  
+
+#application-visualizador-display-component---View--_IDGenPDFViewer-overflowToolbar{
+background-color: #f5f6f7;
+}
+
+#application-visualizador-display-component---View--view_IDGenDetailPage1_title-footer{
+background-color: #f5f6f7;    
+}
+#application-visualizador-display-component---View--_IDGenMasterPage1-footer{
+background-color: #f5f6f7;  
+}
+
+#application-visualizador-display-component---View--titleh_title-intHeader-BarPH {
+    padding-left: 35% !important;
+    position: absolute !important;
+    width: 100% !important;
+    left: 0px !important;
+  }
+
+#application-visualizador-display-component---View--titleh_title-intHeader  {
+    background-color:rgb(117,116,116);     
+}
+
+#application-visualizador-display-component---View--titleh_title-title-inner{
+color: #ffffff;    
+}
+
+/*********************************************************/
+/*---------------------Estilos Móvil---------------------*/
+/********************************************************/
+
+
+/*---------------------Vista BAS----------------------*/
+#application-visualizador-display-component---Mobile--view_IDGenDetailPage1_title-intHeader{
+    background-color: rgb(229,49,56);
+}
+#application-visualizador-display-component---Mobile--view_page_title-intHeader{
+    background-color:var(--color);   
+}
+#application-visualizador-display-component---Mobile--view_IDGenDetailPage1_title-title-inner{
+color: #ffffff;
+font-weight: bold;
+}
+#application-visualizador-display-component---Mobile--view_page_title-title{
+color: #ffffff;
+font-weight: bold;
+}
+#application-visualizador-display-component---Mobile--view_page_title-navButton-iconBtn{
+color: #ffffff;
+}
+#application-visualizador-display-component---Mobile--view_page_title-navButton-inner{
+color: grey;
+}
+.sapMListInfoTBarContainer{
+background-color:rgb(117,116,116); 
+}
+#application-visualizador-display-component---Mobile--filterBar{
+background-color:rgb(117,116,116);     
+}
+#application-visualizador-display-component---Mobile--searchField-reset{
+color:var(--backgroundColor); 
+}
+#application-visualizador-display-component---Mobile--searchField-search{
+color:var(--color);   
+}
+#application-visualizador-display-component---Mobile--_IDGenPDFViewer-toolbarDownloadButton-img{
+color:var(--color);    
+}
+
+#application-visualizador-display-component---Mobile--view_IDGenDetailPage1_title-intHeader{
+    background-color: rgb(229,49,56);
+}
+#application-visualizador-display-component---Mobile--view_page_title-intHeader{
+    background-color:var(--color);   
+}
+#application-visualizador-display-component---Mobile--view_IDGenDetailPage1_title-title-inner{
+color: #ffffff;
+font-weight: bold;
+}
+#application-visualizador-display-component---Mobile--view_page_title-title{
+color: #ffffff;
+font-weight: bold;
+}
+#application-visualizador-display-component---Mobile--view_page_title-navButton-iconBtn{
+color: #ffffff;
+}
+#application-visualizador-display-component---Mobile--view_page_title-navButton-inner{
+color: grey;
+}
+.sapMListInfoTBarContainer{
+background-color:rgb(117,116,116); 
+}
+#application-visualizador-display-component---Mobile--filterBar{
+background-color:rgb(117,116,116);     
+}
+#application-visualizador-display-component---Mobile--searchField-reset{
+color:var(--backgroundColor); 
+}
+#application-visualizador-display-component---Mobile--searchField-search{
+color:var(--color);   
+}
+#application-visualizador-display-component---Mobile--_IDGenPDFViewer-toolbarDownloadButton-img{
+color:var(--color);    
+}
+#__page0-text{
+    display: none;
+}
+#application-visualizador-display-component---Mobile--view_filterBarLabel_text-inner{
+    color: #ffffff;
+    font-weight: bold;    
+}
+
+.sapMLIB.sapMLIBSelected{
+    border-bottom:  rgb(211 55 55);
+ }
+ 
+ .sapMLIB.sapMLIBSelected{
+     background: rgb(237 237 237);
+ }
+ 
+ .sapUiLocalBusyIndicatorAnimation>div::after {
+     background: rgb(229, 49, 56);
+   
+ } 
+ .sapUiLocalBusyIndicatorAnimation>div::before {
+     background: rgb(229, 49, 56);
+   
+ }  
+
+#application-visualizador-display-component---Mobile--_IDGenPDFViewer-overflowToolbar{
+background-color: #f5f6f7;
+}
+
+#application-visualizador-display-component---Mobile--view_IDGenDetailPage1_title-footer{
+background-color: #f5f6f7;    
+}
+#application-visualizador-display-component---Mobile--_IDGenMasterPage1-footer{
+background-color: #f5f6f7;  
+}
+
+#application-visualizador-display-component---Mobile--titleh_title-intHeader-BarPH {
+    padding-left: 3% !important;
+    position: absolute !important;
+    width: 100% !important;
+    left: 0px !important;
+  }
+
+#application-visualizador-display-component---Mobile--titleh_title-intHeader  {
+    background-color:rgb(117,116,116);     
+}
+
+#application-visualizador-display-component---Mobile--titleh_title-title-inner{
+color: #ffffff;    
+}
+
+.sapMBarLeft {
+    padding-left: 0rem;
+    padding-right: 0.25rem;
+}
+
+/*---------------------Vista Móvil----------------------*/
+#container-visualizador---Mobile--view_IDGenDetailPage1_title-intHeader{
+    background-color: rgb(229,49,56);
+}
+#container-visualizador---Mobile--page-intHeader{
+    background-color:var(--color);   
+}
+#container-visualizador---Mobile--view_IDGenDetailPage1_title-title-inner{
+color: #ffffff;
+font-weight: bold;
+}
+#container-visualizador---Mobile--view_page_title-title{
+color: #ffffff;
+font-weight: bold;
+}
+#container-visualizador---Mobile--view_page_title-navButton-iconBtn{
+color: #ffffff;
+}
+#container-visualizador---Mobile--view_page_title-navButton-inner{
+color: grey;
+}
+.sapMListInfoTBarContainer{
+background-color:rgb(117,116,116); 
+}
+#container-visualizador---Mobile--filterBar{
+background-color:rgb(117,116,116);     
+}
+#container-visualizador---Mobile--searchField-reset{
+color:var(--backgroundColor); 
+}
+#container-visualizador---Mobile--searchField-search{
+color:var(--color);   
+}
+#container-visualizador---Mobile--_IDGenPDFViewer-toolbarDownloadButton-img{
+color:var(--color);    
+}
+
+#container-visualizador---Mobile--view_IDGenDetailPage1_title-intHeader{
+    background-color: rgb(229,49,56);
+}
+#container-visualizador---Mobile--page-intHeader{
+    background-color:var(--color);   
+}
+#container-visualizador---Mobile--view_IDGenDetailPage1_title-title-inner{
+color: #ffffff;
+font-weight: bold;
+}
+#container-visualizador---Mobile--view_page_title-title{
+color: #ffffff;
+font-weight: bold;
+}
+#container-visualizador---Mobile--view_page_title-navButton-iconBtn{
+color: #ffffff;
+}
+#container-visualizador---Mobile--view_page_title-navButton-inner{
+color: grey;
+}
+.sapMListInfoTBarContainer{
+background-color:rgb(117,116,116); 
+}
+#container-visualizador---Mobile--filterBar{
+background-color:rgb(117,116,116);     
+}
+#container-visualizador---Mobile--searchField-reset{
+color:var(--backgroundColor); 
+}
+#container-visualizador---Mobile--searchField-search{
+color:var(--color);   
+}
+#container-visualizador---Mobile--_IDGenPDFViewer-toolbarDownloadButton-img{
+color:var(--color);    
+}
+#__page0-text{
+    display: none;
+}
+#container-visualizador---Mobile--view_filterBarLabel_text-inner{
+    color: #ffffff;
+    font-weight: bold;    
+}
+
+.sapMLIB.sapMLIBSelected{
+    border-bottom:  rgb(211 55 55);
+ }
+ 
+ .sapMLIB.sapMLIBSelected{
+     background: rgb(237 237 237);
+ }
+ 
+ .sapUiLocalBusyIndicatorAnimation>div::after {
+     background: rgb(229, 49, 56);
+   
+ } 
+ .sapUiLocalBusyIndicatorAnimation>div::before {
+     background: rgb(229, 49, 56);
+   
+ }  
+
+#container-visualizador---Mobile--_IDGenPDFViewer-overflowToolbar{
+background-color: #f5f6f7;
+}
+
+#container-visualizador---Mobile--view_IDGenDetailPage1_title-footer{
+background-color: #f5f6f7;    
+}
+#container-visualizador---Mobile--_IDGenMasterPage1-footer{
+background-color: #f5f6f7;  
+}
+
+#container-visualizador---Mobile--titleh_title-intHeader-BarPH {
+    padding-left: 3% !important;
+    position: absolute !important;
+    width: 100% !important;
+    left: 0px !important;
+  }
+
+#container-visualizador---Mobile--titleh_title-intHeader  {
+    background-color:rgb(117,116,116);     
+}
+
+#container-visualizador---Mobile--titleh_title-title-inner{
+color: #ffffff;    
+}
+
+.sapMBarLeft {
+    padding-left: 0rem;
+    padding-right: 0.25rem;
+}
+/*
+.bricoClass{
+    background-color: #FF7839 !important;
+}
+*/

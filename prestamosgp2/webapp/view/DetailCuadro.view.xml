@@ -7,22 +7,20 @@
                 <items>
                     <InputListItem label="Tipo de préstamo" visible="true">
                         <content>
-                            <ComboBox editable="true" enabled="true" visible="true" width="auto" valueState="None" maxWidth="100%">
+                            <ComboBox id="idComboBoxCuadro" editable="true" enabled="true" visible="true" width="auto" valueState="None" maxWidth="100%" selectionChange="_onChangeTipoPrestamo">
                                 <items>
                                     <core:Item text="ANTICIPO SIN INTERESES" enabled="true" key="ANTICIPO SIN INTERESES"/>
-                                    <core:Item text="PRÉSTAMO CONSUMO" enabled="true" key="PRÉSTAMO CONSUMO"/>
+                                    <core:Item text="PRÉSTAMO CONSUMO" enabled="true" key="1"/>
                                     <core:Item text="PRÉSTAMO PC" enabled="true" key="PRÉSTAMO PC"/>
-                                    <core:Item text="PRÉSTAMO VIVIENDA" enabled="true" key="PRÉSTAMO VIVIENDA"/>
+                                    <core:Item text="PRÉSTAMO VIVIENDA" enabled="true" key="2"/>
                                 </items>
                             </ComboBox>
                         </content>
                     </InputListItem>
-                    <InputListItem label="Nº de préstamo" visible="true">
+                    <InputListItem label="Nº de préstamo" visible="true" id="idInputListItem">
                         <content>
-                            <ComboBox editable="true" enabled="true" visible="true" width="auto" valueState="None" maxWidth="100%">
+                            <ComboBox id="idComboBoxNPrestamo" editable="true" enabled="true" visible="true" width="auto" valueState="None" maxWidth="100%">
                                 <items>
-                                    <core:Item text="01" enabled="true" key="Item 1"/>
-                                    <core:Item text="02" enabled="true" key="Item 2"/>
                                 </items>
                             </ComboBox>
                         </content>
@@ -31,12 +29,18 @@
             </List>
             <SegmentedButton id="idSBDetailCuadro" width="100%" enabled="true" visible="true">
                 <items>
-                    <SegmentedButtonItem icon="sap-icon://arrow-right" text="Ejecutar" width="50%" enabled="true" press="_onSegmentedButtonItemPress"/>
+                    <SegmentedButtonItem icon="sap-icon://arrow-right" text="Ejecutar" width="50%" enabled="true" press="_onSegmentedButtonEjecutarPress"/>
                     <SegmentedButtonItem icon="sap-icon://arrow-left" text="Salir" width="50%" enabled="true" press="_onSegmentedButtonItemPress1"/>
                 </items>
             </SegmentedButton>
         </content>
-        <footer/>
+        <footer>
+            <Toolbar id="idToolbar">
+                <content>
+                    <MessageStrip id="idMessageStrip" text="{Warnings>/mensaje}" type="{Warnings>/tipo}" showIcon="true" showCloseButton="true" visible="{Warnings>/visible}"/>
+                </content>
+            </Toolbar>
+        </footer>
         <headerContent/>
     </Page>
 </mvc:View>

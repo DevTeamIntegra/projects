@@ -1,7 +1,7 @@
 <mvc:View xmlns:mvc="sap.ui.core.mvc" controllerName="prestamosgp2.controller.DetailCondiciones" xmlns="sap.m" xmlns:layout="sap.ui.layout">
     <Page id="idTitleCondiciones1" title="Simulación Préstamos Actuales" showHeader="true" showFooter="true" showNavButton="false">
         <content>
-            <Table width="auto" noDataText="No data" mode="None" showSeparators="All" growing="true" growingThreshold="20" growingScrollToLoad="true" class="sapUiResponsiveMargin" inset="true">
+            <Table id="idTableCondiciones1" width="auto" noDataText="No data" showSeparators="All" growing="true" growingThreshold="20" growingScrollToLoad="true" class="sapUiResponsiveMargin" inset="true" items="{PrestamosUser>/}" mode="SingleSelect">
                 <infoToolbar/>
                 <headerToolbar>
                     <OverflowToolbar id="idToolbarCondiciones" width="100%" height="2rem" design="Transparent" visible="true" enabled="true">
@@ -14,7 +14,13 @@
                 <columns>
                     <Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
                         <header>
-                            <Text text="Número Préstamo" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                            <Text text="Producto" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                        </header>
+                        <footer/>
+                    </Column>
+                    <Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
+                        <header>
+                            <Text text="ID Prestamo" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
                         </header>
                         <footer/>
                     </Column>
@@ -26,7 +32,7 @@
                     </Column>
                     <Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
                         <header>
-                            <Text text="Fechpa Fin" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                            <Text text="Fecha Fin" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
                         </header>
                         <footer/>
                     </Column>
@@ -36,21 +42,15 @@
                         </header>
                         <footer/>
                     </Column>
-                    <Column width="auto" hAlign="Left" vAlign="Top" minScreenWidth="Tablet" demandPopin="true" popinDisplay="Inline" mergeDuplicates="false">
-                        <header>
-                            <Text text="Condición Préstamo" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
-                        </header>
-                        <footer/>
-                    </Column>
                 </columns>
                 <items>
                     <ColumnListItem type="Active">
                         <cells>
-                            <ObjectIdentifier title="01" text="" titleActive="false" visible="true"/>
-                            <Text text="01.01.2023" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
-                            <Text text="30.06.2051" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
-                            <ObjectNumber number="220.000" unit="EUR" emphasized="true" state="None"/>
-                            <Text text="Cuota Constante" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                            <ObjectIdentifier title="{PrestamosUser>nproducto}" text="" titleActive="false" visible="true"/>
+                            <Text text="{PrestamosUser>idPrestamo}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                            <Text text="{PrestamosUser>fechaInicio}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                            <Text text="{PrestamosUser>fechaFin}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                            <Text text="{PrestamosUser>importe}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
                             <layout:HorizontalLayout>
                                 <layout:content/>
                             </layout:HorizontalLayout>

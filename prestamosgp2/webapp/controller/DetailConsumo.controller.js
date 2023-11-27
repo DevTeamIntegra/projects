@@ -4,7 +4,9 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 	"sap/ui/core/routing/History",
 	"prestamosgp2/utils/utils",
 	"prestamosgp2/model/models",
-], function(BaseController, MessageBox, Utilities, History, Utils, models) {
+    "sap/ui/model/json/JSONModel"
+
+], function(BaseController, MessageBox, Utilities, History, Utils, models,JSONModel) {
 	"use strict";
 
 	return BaseController.extend("prestamosgp2.controller.DetailConsumo", {
@@ -44,10 +46,11 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 			}
 
 		},
-		_onButtonPress: function(oEvent) {
-			this.getOwnerComponent().setModelVivienda(models.getSimulacionConsumo(this.getEntries(), this.getOwnerComponent().oToken, this.getView()));
+		_onButtonSimularPress: function(oEvent) {
+			this.getOwnerComponent().setModelConsumo(models.getSimulacionConsumo(this.getEntries(), this.getOwnerComponent().oToken, this.getView()));
 
 			var oBindingContext = oEvent.getSource().getBindingContext();
+			this.getOwnerComponent().setModel(new JSONModel(this.getEntries()), 'PreviousConsumoPageModel');
 
 			return new Promise(function(fnResolve) {
 
@@ -66,8 +69,15 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 			var oMensualidades = this.byId("idSliderConsumoMensualidades").getValue();
 			var oCheck = this.byId("idCheckConsumoAnyo").getSelected();
 			oCheck ? oMensualidades = parseInt(oMensualidades) + 1 : oMensualidades = oMensualidades; 
+			var oUserInfoModel = this.getOwnerComponent().getModel('UserInfo');
+			var oSalario = oUserInfoModel.oData.salario;
+			var oImporte = ( parseFloat(oSalario) / 12 ) / 3;
+			oImporte = oImporte * ((parseInt(oMensualidades)-1)*3);
 			return {
 				tipoPrestamo : oTipo,
+				importe : oImporte.toFixed(2),
+				carencia : 0,
+				crecimiento : 0,
 				mesInicio : oMes,
 				anioInicio : oAnyo,
 				plazo : oMensualidades

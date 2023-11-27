@@ -24,6 +24,7 @@ sap.ui.define([
 
             getToken : function (callback) {
                 var url = Utils.getUrl();
+                var oThis = this;
                 var query;
                 var token;
                 var formData = new FormData();
@@ -33,27 +34,30 @@ sap.ui.define([
                 formData.append("client_id", "PRT");
                 formData.append("application", "PRT");
 
-                query = "https://integra4.ico.red/nassa/oauth/token";
-                //query =  "/nassa/oauth/token";
+                query = url +  "/nassa/oauth/token";
                 
                 const body = formData;
                 jQuery.ajax({
                     type: "POST",
-                    async: true,
+                    async: false,
                     url: query,
                     data: body,
-                    processData: false, // tell jQuery not to process the data
-                    contentType: false, // tell jQuery not to set contentType
+                    processData: false,
+                    contentType: false,
                     headers: {
                         "Authorization": "Basic UFJUOiQ0YSQxMSRja1k0UyRQVkVoL0NaWkp2b0E1WlUuSlhqU05maFlUSmpsbFN1UTRITG41L1diWjE5NEJuVw=="
                     },
                     success: function (oData) {
                         if (oData) {
                             var token = oData;
-                            // Llama al callback con el token como argumento
+                            
                             callback(token);
+                            
+                            setTimeout(function() {
+                                oThis.getToken(callback); 
+                            }, parseInt(token.expires_in));
                         } else {
-                            callback(null); // Opcionalmente, puedes manejar un caso de error aquí
+                            callback(null);
                         }
                     },
                     error: function (oError) {
@@ -61,28 +65,53 @@ sap.ui.define([
                     }
                 });
                 return token;
-                /* var settings = {
-                    "url": "https://integra4.ico.red/nassa/oauth/token",
-                    "method": "POST",
-                    "timeout": 0,
-                    "headers": {
-                        "Authorization": "Basic UFJUOiQ0YSQxMSRja1k0UyRQVkVoL0NaWkp2b0E1WlUuSlhqU05maFlUSmpsbFN1UTRITG41L1diWjE5NEJuVw=="
-                    },
-                    "processData": false,
-                    "mimeType": "multipart/form-data",
-                    "contentType": false,
-                    "data": formData
-                };   
-                
-                jQuery.ajax(settings).done(function (response) {
-                    console.log(response);
-                }); */
             },
+
+            getUserInfoAndRole: function (oComponent) {
+				var currentUrl = window.location.href;
+				var myArray = currentUrl.split("user=");
+				const url = Utils.getUrl() + "/user-api/attributes";
+				var oModel = new JSONModel();
+				var mock = {
+					firstname: "Dummy",
+					lastname: "User",
+					email: "dummy.user@com",
+					name: myArray[1],
+					displayName: "Dummy User (dummy.user@com)"
+				}; 
+		
+				oModel.loadData(url);
+				oModel.dataLoaded()
+				.then(()=>{
+					//check if data has been loaded
+					//for local testing, set mock data
+					if (!oModel.getData().email) {
+						oModel.setData(mock);
+					}
+                    oComponent.setModel(oModel, "userInfo");
+					try {
+					  loggedUser = myArray[1]//this.getView().getModel("userInfo").oData.uid[0]; //this.getView().getModel("userInfo").oData.name;
+					} catch (error) {
+					  loggedUser = myArray[1]//this.getView().getModel("userInfo").oData.name;
+					}
+					
+					if(loggedUser === "esteri01"){
+					  loggedUser = myArray[1]//"GALALB01";
+					}
+					oComponent.user = mock;
+				})
+				.catch(()=>{               
+					//oModel.setData(mock);
+					//oComponent.setModel(oModel, "userInfo");
+                    oComponent.user = mock;
+				});
+			},
+
             getSimulacionVivienda : function (oEntries, oToken, oView){
                 var url = Utils.getUrl();
                 var query,data;
                 
-                query = "/prestamos-rest/prestamos/simulacion-empleados";
+                query = url + "/prestamos-rest/prestamos/simulacion-empleados";
                 
                 jQuery.ajax({
                     type: "GET",

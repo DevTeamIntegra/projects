@@ -39,6 +39,8 @@ sap.ui.define([
 					Utils.showErrorMsg("Error al obtener el token");
 				}
 			});
+
+			models.getUserInfoAndRole(this);
 			// set the FLP model
 			//this.setModel(models.createFLPModel(), "FLP");
 

@@ -1,8 +1,12 @@
 sap.ui.define(["sap/ui/core/mvc/Controller",
 	"sap/m/MessageBox",
 	"./utilities",
-	"sap/ui/core/routing/History"
-], function(BaseController, MessageBox, Utilities, History) {
+	"sap/ui/core/routing/History",
+	"prestamosgp2/model/models",
+    "sap/ui/model/json/JSONModel",
+	"prestamosgp2/utils/utils",
+
+], function(BaseController, MessageBox, Utilities, History, models,JSONModel,Utils) {
 	"use strict";
 
 	return BaseController.extend("prestamosgp2.controller.DetailCondiciones2", {
@@ -110,9 +114,11 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 			}
 
 		},
-		_onSegmentedButtonItemPress1: function(oEvent) {
+		_onSegmentedButtonSimulacionPress1: function(oEvent) {
+			this.getOwnerComponent().setModelCondiciones(models.getSimulacionCondiciones(this.getEntries(), this.getOwnerComponent().oToken, this.getView()));
 
 			var oBindingContext = oEvent.getSource().getBindingContext();
+			this.getOwnerComponent().setModel(new JSONModel(this.getEntries()), 'PreviousCondicionesPageModel');
 
 			return new Promise(function(fnResolve) {
 
@@ -125,6 +131,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 
 		},
 		onInit: function() {
+			this.getView().setModel(this.getOwnerComponent().getModel('PrestamosUser'),'PrestamosUser');
 			this.oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 			this.oRouter.getTarget("DetailCondiciones2").attachDisplay(jQuery.proxy(this.handleRouteMatched, this));
 			var oView = this.getView();
@@ -142,6 +149,72 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 				}.bind(this)
 			});
 
+		},
+		_onChangeDatePicker : function (oEvent){
+			var oSplit;
+
+			var oDatePicker = oEvent.getSource();
+			var isInicio = oEvent.getSource().getParent().getId().includes('idLblTramo');
+            var oDateValue = oDatePicker.getDateValue();
+			var oSplit = oEvent.getSource().getValue();
+			if(isInicio){
+				var parteInicial = oSplit.slice(0, -2);
+				// Convertir la cadena a un objeto Date (asumiendo que el formato es yyyymm)
+				var year = parteInicial.slice(0, 4);
+				var month = parteInicial.slice(4, 6);
+				var nuevaFecha = new Date(year, parseInt(month, 10) - 1, 1);  // Restar 1 al mes ya que en JavaScript los meses van de 0 a 11
+				oDatePicker.setDateValue(nuevaFecha);
+				oDateValue = oDatePicker.getDateValue();
+			}else{
+				var parteInicial = oSplit.slice(0, -2);
+				// Convertir la cadena a un objeto Date (asumiendo que el formato es yyyymm)
+				var year = parteInicial.slice(0, 4);
+				var month = parteInicial.slice(4, 6);
+				var nuevaFecha = new Date(year, parseInt(month, 10) - 1, new Date(year, parseInt(month, 10), 0).getDate());  // Restar 1 al mes ya que en JavaScript los meses van de 0 a 11
+				oDatePicker.setDateValue(nuevaFecha);
+				oDateValue = oDatePicker.getDateValue();
+			}
+
+            if (oDateValue) {
+                var oDateFormat = sap.ui.core.format.DateFormat.getInstance({ pattern: "dd/MM/yyyy" });
+                var sFormattedDate = oDateFormat.format(oDateValue);
+
+                // Actualizar el valor del DatePicker con la fecha formateada
+                oDatePicker.setValue(sFormattedDate);
+            }
+		},
+		getEntries : function(){
+			var oThis = this;
+			var oTipo = oThis.getView().byId("idTipoPrestamo").getValue();
+			var oInicioTramo = oThis.getView().byId("idInicioTramo").getValue();
+			oInicioTramo =  Utils.getDate(oInicioTramo);
+			if(oInicioTramo){
+				var oMes = oInicioTramo.getMonth() + 1;
+				var oAnyo = oInicioTramo.getYear();
+			}
+			var oFinTramo = oThis.getView().byId("idFinTramo").getValue();
+			oFinTramo = Utils.getDate(oFinTramo);
+			if (oInicioTramo && oFinTramo) {
+				var oTotalAnyos = Utils.getPlazo(oInicioTramo, oFinTramo);
+			}
+
+			var oImporte = oThis.getView().byId("idImporte");
+			if(oImporte == null || oImporte == '' || oImporte != undefined){
+				var oPrestamoModel = oThis.getOwnerComponent().getModel('PrestamosUser');
+				var oPrestamo = oPrestamoModel.oData.find(e => e.selected == true);
+				oImporte = oPrestamo.importe;
+			}
+			var oNuevaCondicion = oThis.getView().byId("idNuevaCondicion").getSelectedKey();
+
+			return {
+				tipoPrestamo : parseInt(oTipo),
+				carencia : 0,
+				crecimiento : parseInt(oNuevaCondicion),
+				mesInicio : oMes,
+				anioInicio : oAnyo,
+				importe : oImporte,
+				plazo : parseInt(oTotalAnyos)
+			}
 		}
 	});
 }, /* bExport= */ true);

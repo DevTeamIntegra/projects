@@ -30,13 +30,13 @@
                     </Column>
                 </columns>
                 <items>
-                    <ColumnListItem type="Active">
+                    <!-- <ColumnListItem type="Active">
                         <cells>
                             <ObjectIdentifier title="CÓDIGO:" text="" titleActive="false" visible="true"/>
                             <Text text="8101195801000" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
                             <ObjectNumber number="" unit="" emphasized="true" state="None"/>
                         </cells>
-                    </ColumnListItem>
+                    </ColumnListItem> -->
                     <ColumnListItem type="Active">
                         <cells>
                             <ObjectIdentifier title="PRESTATARIO:" text="GARCIA MURCIA, CLAUDIA" titleActive="false" visible="true"/>
@@ -83,7 +83,9 @@
                     </ColumnListItem>
                 </items>
             </Table>
-            <Table width="auto" noDataText="No data" mode="None" showSeparators="All" growing="true" growingThreshold="20" growingScrollToLoad="true" class="sapUiResponsiveMargin">
+            <ScrollContainer height="22.5rem" vertical="true" focusable="true">
+            <Table id="idTableCuadroLarga" width="auto" noDataText="No data" mode="None" showSeparators="All" growing="true" growingThreshold="20" growingScrollToLoad="true" class="sapUiResponsiveMargin" items="{CuadroPrestamoModel>/}" fixedLayout="true">
+            <!-- <Table width="auto" noDataText="No data" mode="None" showSeparators="All" growing="true" growingThreshold="20" growingScrollToLoad="true" class="sapUiResponsiveMargin" items="{CuadroPrestamoModel>/}" fixedLayout="true"> -->
                 <infoToolbar/>
                 <headerToolbar/>
                 <columns>
@@ -139,70 +141,23 @@
                 <items>
                     <ColumnListItem type="Active">
                         <cells>
-                            <ObjectIdentifier title="01.06.2026" text="" titleActive="false" visible="true"/>
-                            <Text text="0" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
-                            <ObjectNumber number="8450,75" unit="" emphasized="true" state="None"/>
-                            <Text text="0,9954" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
-                            <Text text="255,12" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
-                            <Text text="251,97" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
-                            <Text text="3,15" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
-                            <Text text="3.549,25" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
-                        </cells>
-                    </ColumnListItem>
-                    <ColumnListItem type="Active">
-                        <cells>
-                            <ObjectIdentifier title="01.06.2026" text="" titleActive="false" visible="true"/>
-                            <Text text="0" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
-                            <ObjectNumber number="8450,75" unit="" emphasized="true" state="None"/>
-                            <Text text="0,9954" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
-                            <Text text="255,12" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
-                            <Text text="251,97" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
-                            <Text text="3,15" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
-                            <Text text="3.549,25" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
-                        </cells>
-                    </ColumnListItem>
-                    <ColumnListItem type="Active">
-                        <cells>
-                            <ObjectIdentifier title="01.06.2026" text="" titleActive="false" visible="true"/>
-                            <Text text="0" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
-                            <ObjectNumber number="8450,75" unit="" emphasized="true" state="None"/>
-                            <Text text="0,9954" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
-                            <Text text="255,12" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
-                            <Text text="251,97" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
-                            <Text text="3,15" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
-                            <Text text="3.549,25" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
-                        </cells>
-                    </ColumnListItem>
-                    <ColumnListItem type="Active">
-                        <cells>
-                            <ObjectIdentifier title="01.06.2026" text="" titleActive="false" visible="true"/>
-                            <Text text="0" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
-                            <ObjectNumber number="8450,75" unit="" emphasized="true" state="None"/>
-                            <Text text="0,9954" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
-                            <Text text="255,12" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
-                            <Text text="251,97" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
-                            <Text text="3,15" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
-                            <Text text="3.549,25" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
-                        </cells>
-                    </ColumnListItem>
-                    <ColumnListItem type="Active">
-                        <cells>
-                            <ObjectIdentifier title="01.06.2026" text="" titleActive="false" visible="true"/>
-                            <Text text="0" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
-                            <ObjectNumber number="8450,75" unit="" emphasized="true" state="None"/>
-                            <Text text="0,9954" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
-                            <Text text="255,12" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
-                            <Text text="251,97" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
-                            <Text text="3,15" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
-                            <Text text="3.549,25" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                            <ObjectIdentifier title="{CuadroPrestamoModel>fecha}" text="" titleActive="false" visible="true"/>
+                            <Text text="{CuadroPrestamoModel>disposiciones}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                            <ObjectNumber number="{CuadroPrestamoModel>capAmortizado}" unit="" emphasized="true" state="None"/>
+                            <Text text="{CuadroPrestamoModel>tipo}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                            <Text text="{CuadroPrestamoModel>cuotas}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                            <Text text="{CuadroPrestamoModel>amortizaciones}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                            <Text text="{CuadroPrestamoModel>intereses}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                            <Text text="{CuadroPrestamoModel>capPendiente}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
                         </cells>
                     </ColumnListItem>
                 </items>
             </Table>
+            </ScrollContainer>
             <SegmentedButton id="idSBDetailCuadro1" width="100%" enabled="true" visible="true">
                 <items>
                     <SegmentedButtonItem icon="sap-icon://arrow-left" text="Volver" width="50%" enabled="true" press="_onSegmentedButtonItemPress"/>
-                    <SegmentedButtonItem icon="sap-icon://print" text="Imprimir" width="50%" enabled="true"/>
+                    <SegmentedButtonItem icon="sap-icon://print" text="Imprimir" width="50%" enabled="true" press="_onSegmentedButtonImprimirPress"/>
                 </items>
             </SegmentedButton>
         </content>

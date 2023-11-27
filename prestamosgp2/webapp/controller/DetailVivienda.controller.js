@@ -3,8 +3,10 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 	"./utilities",
 	"sap/ui/core/routing/History",
     "prestamosgp2/utils/utils",
-    "prestamosgp2/model/models"
-], function(BaseController, MessageBox, Utilities, History, Utils, models) {
+    "prestamosgp2/model/models",
+    "sap/ui/model/json/JSONModel"
+
+], function(BaseController, MessageBox, Utilities, History, Utils, models,JSONModel) {
 	"use strict";
 
 	return BaseController.extend("prestamosgp2.controller.DetailVivienda", {
@@ -48,6 +50,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 			this.getOwnerComponent().setModelVivienda(models.getSimulacionVivienda(this.getEntries(), this.getOwnerComponent().oToken, this.getView()));
 
 			var oBindingContext = oEvent.getSource().getBindingContext();
+			this.getOwnerComponent().setModel(new JSONModel(this.getEntries()), 'PreviousViviendaPageModel');
 
 			return new Promise(function(fnResolve) {
 
@@ -57,10 +60,6 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 					MessageBox.error(err.message);
 				}
 			});
-			/* this.oRouter.navTo("DetailVivienda", {
-				oModel: oModel.oData
-			});
-			*/
 		},
 		doNavigate: function(sRouteName, oBindingContext, fnPromiseResolve, sViaRelation) {
 			var sPath = (oBindingContext) ? oBindingContext.getPath() : null;

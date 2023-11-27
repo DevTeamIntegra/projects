@@ -26,8 +26,8 @@
                             <ComboBox id="idCBoxViviendaCarencia" editable="true" enabled="true" visible="true" width="auto" valueState="None" maxWidth="100%" selectedKey="0">
                                 <items>
                                     <core:Item text="Sin carencia" enabled="true" key="0"/>
-                                    <core:Item text="1 año" enabled="true" key="1"/>
-                                    <core:Item text="2 años" enabled="true" key="2"/>
+                                    <core:Item text="1 año" enabled="true" key="4"/>
+                                    <core:Item text="2 años" enabled="true" key="5"/>
                                 </items>
                             </ComboBox>
                         </content>

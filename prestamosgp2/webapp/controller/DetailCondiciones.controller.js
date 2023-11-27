@@ -1,8 +1,10 @@
 sap.ui.define(["sap/ui/core/mvc/Controller",
 	"sap/m/MessageBox",
 	"./utilities",
-	"sap/ui/core/routing/History"
-], function(BaseController, MessageBox, Utilities, History) {
+	"sap/ui/core/routing/History",
+	"prestamosgp2/model/models",
+    "sap/ui/model/json/JSONModel"
+], function(BaseController, MessageBox, Utilities, History,models,JSONModel) {
 	"use strict";
 
 	return BaseController.extend("prestamosgp2.controller.DetailCondiciones", {
@@ -43,7 +45,15 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 
 		},
 		_onButtonPress: function(oEvent) {
-
+			var oThis = this;
+			var oSelected = oThis.getView().byId("idTableCondiciones1").getSelectedItem();
+			oSelected = oSelected.mAggregations.cells[1].getText();
+			var oPrestamosUser = oThis.getView().getModel("PrestamosUser");
+			var oPrestamo = oPrestamosUser.oData.find(e => e.idPrestamo == oSelected);
+			oPrestamo.selected = true;
+			oPrestamosUser.refresh();
+			this.getOwnerComponent().setModel(oPrestamosUser, "PrestamosUser");
+			
 			var oBindingContext = oEvent.getSource().getBindingContext();
 
 			return new Promise(function(fnResolve) {
@@ -111,6 +121,13 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 
 		},
 		onInit: function() {
+			this.getView().setModel(this.getOwnerComponent().getModel('PrestamosUser'),'PrestamosUser');
+			var oPrestamosUser = this.getView().getModel("PrestamosUser");
+			var oModelPrestamo = models.getCuadroByPrestamo(oPrestamosUser.oData[0].idPrestamo, this.getOwnerComponent());
+			oPrestamosUser.oData[0].fechaInicio = oModelPrestamo.oData[0].fecha
+			oPrestamosUser.oData[0].fechaFin = oModelPrestamo.oData[oModelPrestamo.oData.length-1].fecha;
+			oPrestamosUser.refresh();
+
 			this.oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 			this.oRouter.getTarget("DetailCondiciones").attachDisplay(jQuery.proxy(this.handleRouteMatched, this));
 			var oView = this.getView();

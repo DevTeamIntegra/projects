@@ -111,6 +111,8 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 
 		},
 		onInit: function() {
+			this.getView().setModel(this.getOwnerComponent().getModel('UserInfo'),'UserInfoComplete');
+			this.getView().setModel(this.getOwnerComponent().getModel('PreviousConsumoPageModel'),'PreviousConsumoPageModel');
 			this.oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 			this.oRouter.getTarget("DetailConsumo2").attachDisplay(jQuery.proxy(this.handleRouteMatched, this));
 			var oView = this.getView();
@@ -128,6 +130,14 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 				}.bind(this)
 			});
 
+		},
+		_onSegmentedButtonImprimirPress: function(oEvent) {
+			var oThis = this;
+			var SimuConsumoModel = oThis.getView().getModel('SimuConsumoModel');
+			var oUserModel = oThis.getView().getModel('UserInfoComplete');
+
+			oUserModel.oData.listaCuotas = SimuConsumoModel.oData;
+			oUserModel.refresh();
 		}
 	});
 }, /* bExport= */ true);

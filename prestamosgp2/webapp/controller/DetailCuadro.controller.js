@@ -1,8 +1,12 @@
 sap.ui.define(["sap/ui/core/mvc/Controller",
 	"sap/m/MessageBox",
 	"./utilities",
-	"sap/ui/core/routing/History"
-], function(BaseController, MessageBox, Utilities, History) {
+	"sap/ui/core/routing/History",
+    "prestamosgp2/model/models",
+    "sap/ui/model/json/JSONModel",
+	"prestamosgp2/utils/utils"
+
+], function(BaseController, MessageBox, Utilities, History, models, JSONModel, Utils) {
 	"use strict";
 
 	return BaseController.extend("prestamosgp2.controller.DetailCuadro", {
@@ -142,6 +146,102 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 				}.bind(this)
 			});
 
-		}
+			var oModel = new JSONModel({
+                mensaje: "No existen préstamos para el tipo seleccionado",
+                tipo: sap.ui.core.MessageType.Warning,
+                visible: false
+            });
+
+            // Establecer el modelo en la vista
+            this.getView().setModel(oModel, "Warnings");
+		},
+		_onChangeTipoPrestamo : function(oEvent){
+			var oThis = this; var count = 0;
+			var oTipo = oEvent.getSource().getSelectedKey();
+			var oComponent = this.getOwnerComponent();
+			var oPrestamosModel = oComponent.getModel('PrestamosUser');
+			var oWarnings = oThis.getView().getModel('Warnings');
+
+			var oComboBox = oThis.getView().byId("idComboBoxNPrestamo");
+			oThis.unSelectComboBox(oComboBox);
+			
+			oPrestamosModel.oData.forEach((oPrestamo) => {
+				if(oPrestamo.producto == oTipo){
+					count++;
+					var oItem1 = new sap.ui.core.Item({ key: oPrestamo.producto, text: oPrestamo.nproducto });
+					oComboBox.addItem(oItem1);
+				}
+			});
+			var oMessageStrip = this.byId("idMessageStrip"); 
+			if(count == 0){
+				oThis.unSelectComboBox(oComboBox);	
+				oComboBox.removeAllItems();
+				oWarnings.setProperty("/visible", true);
+				oMessageStrip.setVisible(true);
+			}else{
+				oThis.unSelectComboBox(oComboBox);	
+				oWarnings.setProperty("/visible", false);
+				oMessageStrip.setVisible(false);
+			}
+			oWarnings.refresh();
+		},
+		unSelectComboBox : function (oComboBox){
+			var sSelectedKey = oComboBox.getSelectedKey();
+			if (sSelectedKey) {
+				var oSelectedItem = oComboBox.getItemByKey(sSelectedKey);
+				if (oSelectedItem) {
+					oComboBox.removeItem(oSelectedItem);
+					oComboBox.setValue('');
+				}
+			}
+		},
+
+		_onSegmentedButtonEjecutarPress : function (oEvent){
+			var oThis = this;
+			var oSelectedPrestamo;
+			var oPrestamosModel = this.getOwnerComponent().getModel('PrestamosUser');
+			var oComboBox = oThis.getView().byId("idComboBoxNPrestamo");
+			var oTipo = oComboBox.getSelectedKey();
+
+			oPrestamosModel.oData.forEach((oPrestamo) => {
+				if(oPrestamo.producto == oTipo){
+					oSelectedPrestamo = oPrestamo;
+				}
+			});
+
+			oThis.getOwnerComponent().setModelCuadro(models.getCuadroByPrestamo(oSelectedPrestamo.idPrestamo, oThis.getOwnerComponent()));
+
+			var oBindingContext = oEvent.getSource().getBindingContext();
+			//this.getOwnerComponent().setModel(new JSONModel(this.getEntries()), 'PreviousCuadroPageModel');
+
+			return new Promise(function(fnResolve) {
+
+				this.doNavigate("DetailCuadro2", oBindingContext, fnResolve, "");
+			}.bind(this)).catch(function(err) {
+				if (err !== undefined) {
+					MessageBox.error(err.message);
+				}
+			});
+		},
+		getEntries:function(){
+			//var oTipo = Utils.getTipoNum(this.byId("idComboBoxCuadro").getSelectedKey());
+			var oTipo = this.byId("idComboBoxCuadro").getSelectedKey();
+			var oCarencia = parseInt(this.byId("idCBoxViviendaCarencia").getSelectedKey());
+			var oCondicion = parseInt(this.byId("idCBoxViviendaCondicion").getSelectedKey());
+			var oMes = this.byId("idCBoxViviendaMes").getSelectedKey();
+			var oAnyo = this.byId("idLabelViviendaAnyo").getValue();
+			var oImporte = this.byId("idSliderVivviendaImporte").getValue();
+			var oTotalAnyos = parseInt(this.byId("idSliderViviendaAnyos").getValue());
+			return {
+				tipoPrestamo : oTipo,
+				carencia : oCarencia,
+				crecimiento : oCondicion,
+				mesInicio : oMes,
+				anioInicio : oAnyo,
+				importe : oImporte,
+				plazo : oTotalAnyos
+			}
+		},
+
 	});
 }, /* bExport= */ true);

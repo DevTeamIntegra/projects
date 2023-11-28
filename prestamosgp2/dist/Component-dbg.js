@@ -4,10 +4,8 @@ sap.ui.define([
 	"prestamosgp2/model/models",
 	"prestamosgp2/controller/ListSelector",
 	"prestamosgp2/model/errorHandling",
-    "prestamosgp2/utils/utils",
-	"sap/ui/model/json/JSONModel"
-
-], function(UIComponent, Device, models, ListSelector, errorHandling, Utils, JSONModel) {
+    "prestamosgp2/utils/utils"
+], function(UIComponent, Device, models, ListSelector, errorHandling, Utils) {
 	"use strict";
 
 	var navigationWithContext = {
@@ -26,8 +24,7 @@ sap.ui.define([
 		 * @public
 		 * @override
 		 */
-		init: async function() {
-			this.oEntries = {};
+		init: function() {
 			var oThis = this;
 			this.oListSelector = new ListSelector();
 			// set the device model
@@ -43,20 +40,7 @@ sap.ui.define([
 				}
 			});
 
-			await models.getUserInfoAndRole(this);
-			if(this.user){			
-				var oUserInfo = models.getMoreUserInfo(this);
-				this.setModel(oUserInfo, "UserInfo");
-			}
-
-			if(this.hasModel('UserInfo')){
-				var oModelUser = this.getModel('UserInfo');
-				this.dni = oModelUser.oData.dni;
-			}
-
-			if(this.dni != '' && this.dni != null && this.dni != undefined){
-				this.setModel(new JSONModel(models.getPrestamosUser(this)), 'PrestamosUser');
-			}
+			models.getUserInfoAndRole(this);
 			// set the FLP model
 			//this.setModel(models.createFLPModel(), "FLP");
 
@@ -119,21 +103,6 @@ sap.ui.define([
 			/* var oModel = new sap.ui.model.json.JSONModel();
 			oModel.loadData(oData); // Carga los datos en el modelo (ajusta la URL según tu caso) */
 			this.setModel(oData, "SimuViviendaModel");
-		},
-		setModelConsumo : function (oData){
-			/* var oModel = new sap.ui.model.json.JSONModel();
-			oModel.loadData(oData); // Carga los datos en el modelo (ajusta la URL según tu caso) */
-			this.setModel(oData, "SimuConsumoModel");
-		},
-		setModelCondiciones : function (oData){
-			/* var oModel = new sap.ui.model.json.JSONModel();
-			oModel.loadData(oData); // Carga los datos en el modelo (ajusta la URL según tu caso) */
-			this.setModel(oData, "SimuCondicionesModel");
-		},
-		setModelCuadro: function (oData){
-			/* var oModel = new sap.ui.model.json.JSONModel();
-			oModel.loadData(oData); // Carga los datos en el modelo (ajusta la URL según tu caso) */
-			this.setModel(oData, "CuadroPrestamoModel");
 		}
 
 	});

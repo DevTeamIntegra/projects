@@ -69,10 +69,68 @@ sap.ui.define([
             }
         },
         getTipoNum : function (tipoText){
-            if(tipoText == "VIVIENDA")
+            if(tipoText.includes("VIVIENDA"))
                 return 2;
             else
                 return 1;
+        },
+        getDate : function(oDate){
+			var partesFecha = oDate.split("/");
+			var fecha = new Date(partesFecha[2], partesFecha[1] - 1, partesFecha[0]);
+			return fecha;
+		},
+        getPlazo : function(oInicioTramo, oFinTramo){
+			var diferenciaEnMilisegundos = oFinTramo - oInicioTramo;
+			var oTotalAnyos = new Date(diferenciaEnMilisegundos).getUTCFullYear() - 1970;
+			return oTotalAnyos;
+		},
+        toFormatDatePrint : function(oDate){
+            var partesFecha = oDate.split("/");
+            //2023-01-01
+            return partesFecha[2] + "-" + partesFecha[1] + "-" + partesFecha[0];
+        },
+        abrirVisorPDF: function(base64PDF) {
+            // Crear un objeto Blob a partir del contenido en Base64
+            var byteCharacters = atob(base64PDF);
+            var byteNumbers = new Array(byteCharacters.length);
+            for (var i = 0; i < byteCharacters.length; i++) {
+                byteNumbers[i] = byteCharacters.charCodeAt(i);
+            }
+            var byteArray = new Uint8Array(byteNumbers);
+            var blob = new Blob([byteArray], { type: 'application/pdf' });
+        
+            // Crear una URL para el Blob
+            var blobUrl = URL.createObjectURL(blob);
+        
+            // Abrir una nueva pestaña con el visor de PDF
+            window.open(blobUrl, '_blank');
+        },
+        normalizarObjeto : function (objeto) {
+            return {
+                Codigo: objeto.Codigo,
+                Prestatario: objeto.Prestatario,
+                Dni: objeto.Dni,
+                Tae: objeto.Tae,
+                Domicilio: objeto.Domicilio,
+                Poblacion: objeto.Poblacion,
+                Importe: objeto.Importe,
+                Carencia: objeto.Carencia,
+                Cp: objeto.Cp,
+                Plazo: objeto.Plazo,
+                Base64: objeto.Base64,
+                HeaderToItem: objeto.HeaderToItem.map(subItem => ({
+                    Codigo: subItem.Codigo,
+                    Fecha: subItem.Fecha,
+                    Dispo: subItem.Dispo,
+                    CaAmor: subItem.CaAmor,
+                    TiInt: subItem.TiInt,
+                    Cuota: subItem.Cuota,
+                    Amort: subItem.Amort,
+                    Inter: subItem.Inter,
+                    CaPte: subItem.CaPte
+                }))
+            };
         }
+        
     };
 });

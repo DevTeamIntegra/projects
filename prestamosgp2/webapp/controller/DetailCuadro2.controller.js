@@ -1,8 +1,11 @@
 sap.ui.define(["sap/ui/core/mvc/Controller",
 	"sap/m/MessageBox",
 	"./utilities",
-	"sap/ui/core/routing/History"
-], function(BaseController, MessageBox, Utilities, History) {
+	"sap/ui/core/routing/History",
+    "prestamosgp2/model/models",
+    "prestamosgp2/utils/utils",
+
+], function(BaseController, MessageBox, Utilities, History,models,Utils) {
 	"use strict";
 
 	return BaseController.extend("prestamosgp2.controller.DetailCuadro2", {
@@ -111,6 +114,9 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 
 		},
 		onInit: function() {
+			this.getView().setModel(this.getOwnerComponent().getModel('UserInfo'),'UserInfoComplete');
+			//this.getView().setModel(this.getOwnerComponent().getModel('PreviousCuadroPageModel'),'PreviousCuadroPageModel');
+
 			this.oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 			this.oRouter.getTarget("DetailCuadro2").attachDisplay(jQuery.proxy(this.handleRouteMatched, this));
 			var oView = this.getView();
@@ -128,6 +134,20 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 				}.bind(this)
 			});
 
+		},
+		_onSegmentedButtonImprimirPress: function(oEvent) {
+			var oThis = this;
+			var CuadroPrestamoModel = oThis.getView().getModel('CuadroPrestamoModel');
+			var oUserModel = oThis.getView().getModel('UserInfoComplete');
+			var oPrestamosUserModel = oThis.getView().getModel('PrestamosUser');
+			var oPrestamo = oPrestamosUserModel.oData.find(p => p.dni == oUserModel.oData.dni);
+
+			oUserModel.oData.listaCuotas = CuadroPrestamoModel.oData;
+			oUserModel.oData.codigo = oPrestamo.idPrestamo;
+			oUserModel.oData.importe = oPrestamo.importe;
+			oUserModel.refresh();
+
+			Utils.abrirVisorPDF(models.sendToPrint(models.formatModelToPrint(oUserModel.oData), models.getCsrfToken()));
 		}
 	});
 }, /* bExport= */ true);

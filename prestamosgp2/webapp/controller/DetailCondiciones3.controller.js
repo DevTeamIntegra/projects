@@ -1,8 +1,10 @@
 sap.ui.define(["sap/ui/core/mvc/Controller",
 	"sap/m/MessageBox",
 	"./utilities",
-	"sap/ui/core/routing/History"
-], function(BaseController, MessageBox, Utilities, History) {
+	"sap/ui/core/routing/History",
+	"prestamosgp2/model/models"
+
+], function(BaseController, MessageBox, Utilities, History,models) {
 	"use strict";
 
 	return BaseController.extend("prestamosgp2.controller.DetailCondiciones3", {
@@ -111,6 +113,10 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 
 		},
 		onInit: function() {
+			this.getView().setModel(this.getOwnerComponent().getModel('UserInfo'),'UserInfoComplete');
+			this.getView().setModel(this.getOwnerComponent().getModel('PreviousCondicionesPageModel'),'PreviousCondicionesPageModel');
+
+			this.getView().setModel(this.getOwnerComponent().getModel('UserInfo'),'UserInfoComplete');
 			this.oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 			this.oRouter.getTarget("DetailCondiciones3").attachDisplay(jQuery.proxy(this.handleRouteMatched, this));
 			var oView = this.getView();
@@ -128,6 +134,14 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 				}.bind(this)
 			});
 
+		},
+		_onSegmentedButtonImprimirPress: function(oEvent) {
+			var oThis = this;
+			var oSimuPrestamoModel = oThis.getView().getModel('SimuCondicionesModel');
+			var oUserModel = oThis.getView().getModel('UserInfoComplete');
+
+			oUserModel.oData.listaCuotas = oSimuPrestamoModel.oData;
+			oUserModel.refresh();
 		}
 	});
 }, /* bExport= */ true);

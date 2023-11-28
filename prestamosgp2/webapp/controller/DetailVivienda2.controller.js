@@ -3,8 +3,11 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 	"./utilities",
 	"sap/ui/core/routing/History",
 	"prestamosgp2/utils/utils",
-    "prestamosgp2/model/models"
-], function(BaseController, MessageBox, Utilities, History, Utils, models) {
+    "prestamosgp2/model/models",
+    "prestamosgp2/utils/formatter",
+    "sap/ui/model/json/JSONModel",
+
+], function(BaseController, MessageBox, Utilities, History, Utils, models, formatter, JSONModel) {
 	"use strict";
 
 	return BaseController.extend("prestamosgp2.controller.DetailVivienda2", {
@@ -113,6 +116,8 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 
 		},
 		onInit: function() {
+			this.getView().setModel(this.getOwnerComponent().getModel('UserInfo'),'UserInfoComplete');
+			this.getView().setModel(this.getOwnerComponent().getModel('PreviousViviendaPageModel'),'PreviousViviendaPageModel');
 			this.oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 			this.oRouter.getTarget("DetailVivienda2").attachDisplay(jQuery.proxy(this.handleRouteMatched, this));
 			var oView = this.getView();
@@ -131,32 +136,13 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 			});
 		},
 
-		_onPrintTable: function() {
-			// Agrega la marca de agua como un elemento HTML al cuerpo de la página
-			document.documentElement.classList.add('imprimir');
-			var watermark = document.createElement('div');
-			watermark.classList.add('watermark'); // Agrega la clase de CSS para la marca de agua
-			watermark.textContent = 'Marca de Agua'; // Texto de la marca de agua
-			document.body.appendChild(watermark);
-			
-			// Abre la ventana de impresión del navegador
-			window.print();
-			
-			// Elimina la marca de agua después de la impresión (opcional)
-			watermark.remove();
-			document.documentElement.classList.remove('imprimir');
-		},
-		recorrerElementos: function(elemento) {
-			/* var rootElement = document.documentElement;
-			recorrerElementos(rootElement); */
-			// Realiza alguna acción en el elemento actual (por ejemplo, imprimir su nombre de etiqueta)
-			console.log(elemento.tagName);
-		  
-			// Recorre los elementos secundarios (hijos) del elemento actual
-			var hijos = elemento.children;
-			for (var i = 0; i < hijos.length; i++) {
-			  recorrerElementos(hijos[i]); // Llama recursivamente a la función para los elementos secundarios
-			}
-		  }
+		_onSegmentedButtonImprimirPress: function(oEvent) {
+			var oThis = this;
+			var SimuViviendaModel = oThis.getView().getModel('SimuViviendaModel');
+			var oUserModel = oThis.getView().getModel('UserInfoComplete');
+
+			oUserModel.oData.listaCuotas = SimuViviendaModel.oData;
+			oUserModel.refresh();
+		}
 	});
 }, /* bExport= */ true);

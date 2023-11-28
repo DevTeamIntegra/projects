@@ -18,7 +18,16 @@ server:
         backend:
           - path: /prestamos-rest
             url: http://integra.ico.red:7321
-            destination: PrestamosGP
+            destination: PrestamosGP_ECD
+          - path: /nassa/oauth # Nueva conexión
+            url: http://integra.ico.red:12011
+            destination: TokenPrestamosGP_ECD
+          - path: /odata/v2 # Nueva conexión
+            url: https://hcm55.sapsf.eu
+            destination: SuccessFactor_v2
+          - path: /sap/opu/odata/sap/ZHR_ODATA_TEST_SRV_01 # Nueva conexión
+            url: https://my550714.payroll.sapsf.eu
+            destination: ECP_GSV  
     - name: fiori-tools-appreload
       afterMiddleware: compression
       configuration:

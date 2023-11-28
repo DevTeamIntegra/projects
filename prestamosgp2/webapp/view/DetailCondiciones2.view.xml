@@ -7,48 +7,48 @@
                 <items>
                     <InputListItem label="ID de préstamo:" visible="true">
                         <content>
-                            <Input value="CONSUMO" type="Text" showValueHelp="false" enabled="false" visible="true" width="auto" valueHelpOnly="false" required="false" valueStateText="Invalid entry" maxLength="0"/>
+                            <Input id="idTipoPrestamo" value="{PrestamosUser>/0/producto}" type="Text" showValueHelp="false" enabled="false" visible="true" width="auto" valueHelpOnly="false" required="false" valueStateText="Invalid entry" maxLength="0"/>
                         </content>
                     </InputListItem>
                     <InputListItem label="Fecha Inicio de Préstamo" visible="true">
                         <content>
-                            <DatePicker width="auto" displayFormat="medium" required="false" valueStateText="Invalid entry" enabled="true" visible="true" valueFormat="yyyyMMdd"/>
+                            <DatePicker id="idInicioPrestamo" width="auto" displayFormat="medium" required="false" valueStateText="Invalid entry" visible="true" valueFormat="yyyyMMdd" value="{PrestamosUser>/0/fechaInicio}" enabled="false"/>
                         </content>
                     </InputListItem>
                     <InputListItem label="Fecha Fin de Préstamo" visible="true">
                         <content>
-                            <DatePicker width="auto" displayFormat="medium" required="false" valueStateText="Invalid entry" enabled="true" visible="true" valueFormat="yyyyMMdd"/>
+                            <DatePicker id="idFinPrestamo" width="auto" displayFormat="medium" required="false" valueStateText="Invalid entry" visible="true" valueFormat="yyyyMMdd" value="{PrestamosUser>/0/fechaFin}" enabled="false"/>
                         </content>
                     </InputListItem>
-                    <InputListItem label="Fecha de Inicio de tramo: *" visible="true">
+                    <InputListItem id="idLblTramo" label="Fecha de Inicio de tramo: *" visible="true">
                         <content>
-                            <DatePicker width="auto" displayFormat="medium" required="false" valueStateText="Invalid entry" enabled="true" visible="true" valueFormat="yyyyMMdd"/>
+                            <DatePicker id="idInicioTramo" width="auto" displayFormat="medium" required="false" valueStateText="Invalid entry" enabled="true" visible="true" valueFormat="yyyyMMdd" change="_onChangeDatePicker" placeholder="dd/mm/yyyy"/>
                         </content>
                     </InputListItem>
                     <InputListItem label="Fecha Fin nueva: *" visible="true">
                         <content>
-                            <DatePicker width="auto" displayFormat="medium" required="false" valueStateText="Invalid entry" enabled="true" visible="true" valueFormat="yyyyMMdd"/>
+                            <DatePicker id="idFinTramo" width="auto" displayFormat="medium" required="false" valueStateText="Invalid entry" enabled="true" visible="true" valueFormat="yyyyMMdd" change="_onChangeDatePicker" placeholder="dd/mm/yyyy"/>
                         </content>
                     </InputListItem>
                     <InputListItem label="Importe a amortizar:" visible="true">
                         <content>
-                            <Input type="Text" showValueHelp="false" enabled="true" visible="true" width="auto" valueHelpOnly="false" required="false" valueStateText="Invalid entry" maxLength="0"/>
+                            <Input id="idImporte" type="Text" showValueHelp="false" enabled="true" visible="true" width="auto" valueHelpOnly="false" required="false" valueStateText="Invalid entry" maxLength="0"/>
                         </content>
                     </InputListItem>
                     <InputListItem label="Nueva condición préstamo: *" visible="true">
                         <content>
-                            <ComboBox editable="true" enabled="true" visible="true" width="auto" valueState="None" maxWidth="100%">
+                            <ComboBox  id="idNuevaCondicion" editable="true" enabled="true" visible="true" width="auto" valueState="None" maxWidth="100%">
                                 <items>
-                                    <core:Item text="Cuota Constante" enabled="true" key="Cuota Constante"/>
-                                    <core:Item text="Cuota creciente 4%" enabled="true" key="Cuota creciente 4%"/>
-                                    <core:Item text="Cuota creciente 5%" enabled="true" key="Cuota creciente 5%"/>
+                                    <core:Item text="Cuota Constante" enabled="true" key="0"/>
+                                    <core:Item text="Cuota creciente 4%" enabled="true" key="4"/>
+                                    <core:Item text="Cuota creciente 5%" enabled="true" key="5"/>
                                 </items>
                             </ComboBox>
                         </content>
                     </InputListItem>
                     <InputListItem label="Recalcular tipo de insterés actual:" visible="true">
                         <content>
-                            <CheckBox text="" selected="true" editable="true" enabled="true" visible="true" width="auto" textDirection="LTR" wrapping="false" useEntireWidth="true"/>
+                            <CheckBox id="idTipoInteres" text="" selected="true" editable="true" enabled="true" visible="true" width="auto" textDirection="LTR" wrapping="false" useEntireWidth="true"/>
                         </content>
                     </InputListItem>
                 </items>
@@ -56,7 +56,7 @@
             <SegmentedButton id="idSBDetailCondiciones2" width="100%" enabled="true" visible="true">
                 <items>
                     <SegmentedButtonItem icon="sap-icon://arrow-left" text="Volver" width="50%" enabled="true" press="_onSegmentedButtonItemPress"/>
-                    <SegmentedButtonItem icon="sap-icon://arrow-right" text="Iniciar Simulación" width="50%" enabled="true" press="_onSegmentedButtonItemPress1"/>
+                    <SegmentedButtonItem icon="sap-icon://arrow-right" text="Iniciar Simulación" width="50%" enabled="true" press="_onSegmentedButtonSimulacionPress1"/>
                 </items>
             </SegmentedButton>
         </content>

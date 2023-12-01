@@ -16,12 +16,10 @@
             "toolsId": "24477331-a409-4496-bbf5-4d8a9e128302"
         },
         "dataSources": {
-            "tokenService": {
-                "uri": "/nassa/oauth/",
+            "mainService": {
+                "uri": "/sap/opu/odata/sap/ZHR_XXX_0050_ODATA_SRV",
                 "type": "OData",
                 "settings": {
-                    "annotations": [],
-                    "localUri": "localService/metadata.xml",
                     "odataVersion": "2.0"
                 }
             }
@@ -78,34 +76,19 @@
             "cozy": true
         },
         "models": {
-            "": {
-                "dataSource": "tokenService",
-                "preload": true,
-                "settings": {
-                    "useBatch":false
-                }
-            },
             "i18n": {
                 "type": "sap.ui.model.resource.ResourceModel",
                 "settings": {
                     "bundleName": "visualizador.i18n.i18n"
                 }
             },
-            "ItemSet": {
-                "type": "sap.ui.model.json.JSONModel",
-                "uri": "./localservice/items.json"
-            },
-            "ColoresSet": {
-                "type": "sap.ui.model.json.JSONModel",
-                "uri": "./localservice/colores.json"
-            },
-            "TextosSet": {
-                "type": "sap.ui.model.json.JSONModel",
-                "uri": "./localservice/textos.json"
-            },
-            "EjerciciosSet": {
-                "type": "sap.ui.model.json.JSONModel",
-                "uri": "./localservice/ejercicios.json"
+            "MainModel": {
+                "type": "sap.ui.model.odata.v2.ODataModel",
+                "dataSource": "mainService",
+                "preload": false,
+                "settings": {
+                    "useBatch":false
+                }
             }
         },
         "resources": {

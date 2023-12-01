@@ -15,6 +15,13 @@ server:
             - /resources
             - /test-resources
           url: https://ui5.sap.com
+        backend:
+          - path: /odata/v2 # Nueva conexión
+            url: https://hcm55.sapsf.eu
+            destination: SuccessFactor_v2
+          - path: /sap/opu/odata/sap/ZHR_XXX_0050_ODATA_SRV # Nueva conexión
+            url: https://my550714.payroll.sapsf.eu
+            destination: ECP_GSV  
     - name: fiori-tools-appreload
       afterMiddleware: compression
       configuration:

@@ -29,6 +29,18 @@ server:
       afterMiddleware: compression
       configuration:
         ignoreCertError: false # If set to true, certificate errors will be ignored. E.g. self-signed certificates will be accepted
+        ui5:
+          path:
+            - /resources
+            - /test-resources
+          url: https://ui5.sap.com
+        backend:
+          - path: /odata/v2 # Nueva conexión
+            url: https://hcm55.sapsf.eu
+            destination: SuccessFactor_v2s
+          - path: /sap/opu/odata/sap/ZHR_XXX_0050_ODATA_SRV # Nueva conexión
+            url: https://my550714.payroll.sapsf.eu
+            destination: ECP_GSV 
     - name: fiori-tools-preview
       afterMiddleware: fiori-tools-appreload
       configuration:

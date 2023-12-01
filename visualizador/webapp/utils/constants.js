@@ -3,10 +3,12 @@ sap.ui.define([
 	
 	return {
 		HANA_DEV: "hanatrial",
-		SAP_DOMAIN: "my0100289.payroll.ondemand.com",
-		SAP_DEV_DOMAIN: "my0100289.payroll.ondemand.com",
-		SAP_PREVIEW_DOMAIN: "my0100290.payroll.ondemand.com",
-		SAP_PROD_DOMAIN: "my0100291.payroll.ondemand.com",
+		SAP_DOMAIN: "my550714.payroll.sapsf.eu",
+		APP_DEV_DOMAIN: "port8080-workspaces-ws-wk24t.eu10.applicationstudio.cloud.sap",
+		sRequest: "?sap-client=100&processId=446F73735F436F6D70656E736163696F6E",
+		SAP_DEV_DOMAIN: "my550714.payroll.sapsf.eu",
+		SAP_PREVIEW_DOMAIN: "my550714.payroll.sapsf.eu",
+		//SAP_PROD_DOMAIN: "my0100291.payroll.ondemand.com",
 		SFSF_DEV: "performancemanager.successfactors.eu",
 		SFSF_DEV_PHOTO_URI: "/eduPhoto/view?companyId=BRICOMARTDES&photo_type=liveProfile&user_id=",
 		SFSF_DEV_ATTACHMENT_API: "https://api2.successfactors.eu/odata/v2/Attachment",

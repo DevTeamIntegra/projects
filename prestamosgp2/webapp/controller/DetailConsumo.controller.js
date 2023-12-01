@@ -47,41 +47,65 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 
 		},
 		_onButtonSimularPress: function(oEvent) {
-			this.getOwnerComponent().setModelConsumo(models.getSimulacionConsumo(this.getEntries(), this.getOwnerComponent().oToken, this.getView()));
+			var oThis = this;
+			var oEntries = this.getEntries();
+			if(oEntries != false){
+				oThis.getOwnerComponent().dialog.open();
+				this.getOwnerComponent().setModelConsumo(models.getSimulacionConsumo(oEntries, this.getOwnerComponent().oToken, this.getView()));
 
-			var oBindingContext = oEvent.getSource().getBindingContext();
-			this.getOwnerComponent().setModel(new JSONModel(this.getEntries()), 'PreviousConsumoPageModel');
+				var oBindingContext = oEvent.getSource().getBindingContext();
+				this.getOwnerComponent().setModel(new JSONModel(this.getEntries()), 'PreviousConsumoPageModel');
 
-			return new Promise(function(fnResolve) {
-
-				this.doNavigate("DetailConsumo2", oBindingContext, fnResolve, "");
-			}.bind(this)).catch(function(err) {
-				if (err !== undefined) {
-					MessageBox.error(err.message);
-				}
-			});
-
+				return new Promise(function(fnResolve) {
+					oThis.getOwnerComponent().dialog.close();
+					this.doNavigate("DetailConsumo2", oBindingContext, fnResolve, "");
+				}.bind(this)).catch(function(err) {
+					if (err !== undefined) {
+						oThis.getOwnerComponent().dialog.close();
+						MessageBox.error(err.message);
+					}
+				});
+			}
 		},
 		getEntries:function(){
 			var oTipo = Utils.getTipoNum(this.byId("idInputConsumoTipo").getValue());
 			var oMes = this.byId("idCBoxConsumoMes").getSelectedKey();
 			var oAnyo = this.byId("idLabelCosnumoAnyo").getValue();
-			var oMensualidades = this.byId("idSliderConsumoMensualidades").getValue();
-			var oCheck = this.byId("idCheckConsumoAnyo").getSelected();
-			oCheck ? oMensualidades = parseInt(oMensualidades) + 1 : oMensualidades = oMensualidades; 
-			var oUserInfoModel = this.getOwnerComponent().getModel('UserInfo');
-			var oSalario = oUserInfoModel.oData.salario;
-			var oImporte = ( parseFloat(oSalario) / 12 ) / 3;
-			oImporte = oImporte * ((parseInt(oMensualidades)-1)*3);
-			return {
-				tipoPrestamo : oTipo,
-				importe : oImporte.toFixed(2),
-				carencia : 0,
-				crecimiento : 0,
-				mesInicio : oMes,
-				anioInicio : oAnyo,
-				plazo : oMensualidades
+			if(oMes == '13'){
+				Utils.showErrorMsg("El mes no puede estar vacío")// Opcionalmente, puedes manejar un caso de error aquí
+				return false;
 			}
+			var oMesAux = parseInt(this.byId("idCBoxConsumoMes").getSelectedKey(), 10);
+			var oAnyoAux = parseInt(this.byId("idLabelCosnumoAnyo").getValue(), 10);
+
+			var fechaSeleccionada = new Date(oAnyoAux, oMesAux - 1, 1); // Restamos 1 al mes porque los meses en JavaScript van de 0 a 11
+			// Obtener la fecha actual
+			var fechaActual = new Date();
+
+			if(fechaSeleccionada>fechaActual){
+				var oMensualidades = this.byId("idSliderConsumoMensualidades").getValue();
+				var oCheck = this.byId("idCheckConsumoAnyo").getSelected();
+				oCheck ? oMensualidades = parseInt(oMensualidades) + 1 : oMensualidades = oMensualidades; 
+				var oUserInfoModel = this.getOwnerComponent().getModel('UserInfo');
+				var oSalario = oUserInfoModel.oData.salario;
+				var oImporte = (parseFloat(oSalario)) / 3;
+				//oImporte = oImporte * ((parseInt(oMensualidades)-1)*3);
+				return {
+					tipoPrestamo : oTipo,
+					importe : oImporte.toFixed(2),
+					carencia : 0,
+					crecimiento : 0,
+					mesInicio : oMes,
+					anioInicio : oAnyo,
+					plazo : oMensualidades
+				}
+			}else{
+				Utils.showErrorMsg("La fecha debe ser mayor a la actual");
+				return false;
+			}
+
+
+			
 		},
 		doNavigate: function(sRouteName, oBindingContext, fnPromiseResolve, sViaRelation) {
 			var sPath = (oBindingContext) ? oBindingContext.getPath() : null;

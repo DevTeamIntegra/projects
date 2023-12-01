@@ -24,8 +24,8 @@
       "csrfProtection": false
     },
     {
-      "source": "^sap/opu/odata/sap/ZHR_ODATA_TEST_SRV_01/(.*)$",
-      "target": "sap/opu/odata/sap/ZHR_ODATA_TEST_SRV_01/$1",
+      "source": "^/sap/opu/odata/sap/ZHR_ODATA_CUADRO_PRESTAMO_SRV/(.*)$",
+      "target": "/sap/opu/odata/sap/ZHR_ODATA_CUADRO_PRESTAMO_SRV/$1",
       "destination": "ECP_GSV",
       "authenticationType": "none",
       "csrfProtection": false

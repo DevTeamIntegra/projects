@@ -115,20 +115,26 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 
 		},
 		_onSegmentedButtonSimulacionPress1: function(oEvent) {
-			this.getOwnerComponent().setModelCondiciones(models.getSimulacionCondiciones(this.getEntries(), this.getOwnerComponent().oToken, this.getView()));
+			var oThis = this;
+			var oEntries = this.getEntries();
+			if(oEntries != false){
+				oThis.getOwnerComponent().dialog.open();
+				this.getOwnerComponent().setModelCondiciones(models.getSimulacionCondiciones(this.getEntries(), this.getOwnerComponent().oToken, this.getView()));
 
-			var oBindingContext = oEvent.getSource().getBindingContext();
-			this.getOwnerComponent().setModel(new JSONModel(this.getEntries()), 'PreviousCondicionesPageModel');
+				var oBindingContext = oEvent.getSource().getBindingContext();
+				this.getOwnerComponent().setModel(new JSONModel(this.getEntries()), 'PreviousCondicionesPageModel');
 
-			return new Promise(function(fnResolve) {
-
-				this.doNavigate("DetailCondiciones3", oBindingContext, fnResolve, "");
-			}.bind(this)).catch(function(err) {
-				if (err !== undefined) {
-					MessageBox.error(err.message);
-				}
-			});
-
+				return new Promise(function(fnResolve) {
+					oThis.getOwnerComponent().dialog.close();
+					this.doNavigate("DetailCondiciones3", oBindingContext, fnResolve, "");
+				}.bind(this)).catch(function(err) {
+					if (err !== undefined) {
+						oThis.getOwnerComponent().dialog.close();
+						MessageBox.error(err.message);
+					}
+				});
+			}
+			
 		},
 		onInit: function() {
 			this.getView().setModel(this.getOwnerComponent().getModel('PrestamosUser'),'PrestamosUser');
@@ -186,26 +192,56 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 		getEntries : function(){
 			var oThis = this;
 			var oTipo = oThis.getView().byId("idTipoPrestamo").getValue();
+			
+			var oInicioPrestamo = oThis.getView().byId("idInicioPrestamo").getValue();
+			oInicioPrestamo = Utils.getDate(oInicioPrestamo);
+			var oFinPrestamo = oThis.getView().byId("idFinPrestamo").getValue();
+			oFinPrestamo = Utils.getDate(oFinPrestamo);
 			var oInicioTramo = oThis.getView().byId("idInicioTramo").getValue();
+			if(oInicioTramo == '' || oInicioTramo == undefined || oInicioTramo == null){
+				Utils.showErrorMsg("La nueva fecha de inicio nunca puede ir vacía")// Opcionalmente, puedes manejar un caso de error aquí
+				return false;
+			}
 			oInicioTramo =  Utils.getDate(oInicioTramo);
+			if(oFinTramo == '' || oFinTramo == undefined || oFinTramo == null){
+				Utils.showErrorMsg("La nueva fecha de fin nunca puede ir vacía")// Opcionalmente, puedes manejar un caso de error aquí
+				return false;
+			}
+			var oFinTramo = oThis.getView().byId("idFinTramo").getValue();
+			oFinTramo = Utils.getDate(oFinTramo);
+
+			if(oInicioPrestamo > oInicioTramo || oFinTramo < oInicioPrestamo){
+				Utils.showErrorMsg("La nueva fecha de inicio nunca puede ser inferior a la de incio actual")// Opcionalmente, puedes manejar un caso de error aquí
+				return false;
+			}
 			if(oInicioTramo){
 				var oMes = oInicioTramo.getMonth() + 1;
 				var oAnyo = oInicioTramo.getYear();
 			}
-			var oFinTramo = oThis.getView().byId("idFinTramo").getValue();
-			oFinTramo = Utils.getDate(oFinTramo);
 			if (oInicioTramo && oFinTramo) {
 				var oTotalAnyos = Utils.getPlazo(oInicioTramo, oFinTramo);
 			}
 
-			var oImporte = oThis.getView().byId("idImporte");
-			if(oImporte == null || oImporte == '' || oImporte != undefined){
-				var oPrestamoModel = oThis.getOwnerComponent().getModel('PrestamosUser');
-				var oPrestamo = oPrestamoModel.oData.find(e => e.selected == true);
-				oImporte = oPrestamo.importe;
-			}
-			var oNuevaCondicion = oThis.getView().byId("idNuevaCondicion").getSelectedKey();
 
+			var oPrestamoModel = oThis.getOwnerComponent().getModel('PrestamosUser');
+			var oPrestamo = oPrestamoModel.oData.find(e => e.selected == true);
+			var oImporte = oPrestamo.importe;
+
+			var oInputImporte = oThis.getView().byId("idImporte").getValue();
+			if(oInputImporte != null && oInputImporte != '' && oInputImporte != undefined){
+				if(parseFloat(oImporte)>=parseFloat(oInputImporte)){
+					oImporte = parseFloat(oImporte)-parseFloat(oInputImporte);
+				}else{
+					Utils.showErrorMsg("El importe a amortizar nunca puede ser mayor al pendiente");
+					return false;
+				}
+			}
+			
+			var oNuevaCondicion = oThis.getView().byId("idNuevaCondicion").getSelectedKey();
+			if(oNuevaCondicion == ""){
+				Utils.showErrorMsg("La condición no puede ir vacía");
+				return false;
+			}
 			return {
 				tipoPrestamo : parseInt(oTipo),
 				carencia : 0,

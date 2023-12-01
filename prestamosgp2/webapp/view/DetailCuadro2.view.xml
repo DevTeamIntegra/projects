@@ -3,7 +3,7 @@
         <content>
             <Title text="INSTITUTO DE CRÉDITO OFICIALINSTITUTO DE CRÉDITO OFICIAL" titleStyle="H3" width="100%" textAlign="Center" visible="true" wrapping="false"/>
             <Title text="Cálculo del cuadro de intereses del préstamo" titleStyle="H5" width="100%" textAlign="Center" visible="true" wrapping="false"/>
-            <Title text="FECHA:03.08.2023" titleStyle="H6" width="100%" textAlign="Center" visible="true" wrapping="false"/>
+            <Title text="{parts: [{path: 'UserInfoComplete>/dni'}], formatter: '.formatter.formatDateTitle'}" titleStyle="H6" width="100%" textAlign="Center" visible="true" wrapping="false"/>
             <Table id="idTableCuadro" width="75%" noDataText="No data" mode="None" showSeparators="All" growing="true" growingThreshold="20" growingScrollToLoad="true" class="sapUiTinyMarginTop sapUiTinyMarginBottom sapUiLargeMarginBegin sapUiLargeMarginEnd">
                 <infoToolbar>
                     <Toolbar width="100%" height="auto" design="Auto" visible="false" enabled="true">
@@ -30,36 +30,32 @@
                     </Column>
                 </columns>
                 <items>
-                    <!-- <ColumnListItem type="Active">
+                  <!--   <ColumnListItem type="Active">
                         <cells>
                             <ObjectIdentifier title="CÓDIGO:" text="" titleActive="false" visible="true"/>
-                            <Text text="8101195801000" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                            <Text text="P8001195802000" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
                             <ObjectNumber number="" unit="" emphasized="true" state="None"/>
                         </cells>
                     </ColumnListItem> -->
                     <ColumnListItem type="Active">
                         <cells>
-                            <ObjectIdentifier title="PRESTATARIO:" text="GARCIA MURCIA, CLAUDIA" titleActive="false" visible="true"/>
-                            <ObjectIdentifier title="D.N.I.:" text="05338267J" titleActive="false" visible="true"/>
-                            <ObjectIdentifier title="TAE:" text="2,5" titleActive="false" visible="true"/>
-                            <Text text="Supplier Name" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
-                            <ObjectNumber number="150.00" unit="USD" emphasized="true" state="None"/>
+                            <ObjectIdentifier title="PRESTATARIO: " text="{UserInfoComplete>/name}" titleActive="false" visible="true"/>
+                            <ObjectIdentifier title="D.N.I.:" text="{UserInfoComplete>/dni}" titleActive="false" visible="true"/>
+                            <ObjectIdentifier title="TAE:" text="1,0006" titleActive="false" visible="true"/>
                         </cells>
                     </ColumnListItem>
                     <ColumnListItem type="Active">
                         <cells>
-                            <ObjectIdentifier title="DOMICILIO:" text="GENERAL ALVAREZ DE CASTRO" titleActive="false" visible="true"/>
-                            <ObjectIdentifier title="POBLACIÓN:" text="MADRID" titleActive="false" visible="true"/>
-                            <ObjectIdentifier title="COD. POST:" text="28010" titleActive="false" visible="true"/>
-                            <Text text="Supplier Name" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
-                            <ObjectNumber number="150.00" unit="USD" emphasized="true" state="None"/>
+                            <ObjectIdentifier title="DOMICILIO:" text="{parts: [{path: 'UserInfoComplete>/calle'}, {path: 'UserInfoComplete>/numero'}, {path: 'UserInfoComplete>/planta'}, {path: 'UserInfoComplete>/puerta'}, {path: 'UserInfoComplete>/ciudad'}], formatter: '.formatter.formatAddress'}" titleActive="false" visible="true"/>
+                            <ObjectIdentifier title="POBLACIÓN:" text="{UserInfoComplete>/ciudad}" titleActive="false" visible="true"/>
+                            <ObjectIdentifier title="COD. POST:" text="{UserInfoComplete>/cp}" titleActive="false" visible="true"/>
                         </cells>
                     </ColumnListItem>
                     <ColumnListItem type="Active">
                         <cells>
-                            <ObjectIdentifier title="IMPORTE PRÉSTAMO:" text="12.974,7" titleActive="false" visible="true"/>
-                            <ObjectIdentifier title="CARENCIA" text="0" titleActive="false" visible="true"/>
-                            <ObjectIdentifier title="DEMORAS" text="0" titleActive="false" visible="true"/>
+                            <ObjectIdentifier title="IMPORTE PRÉSTAMO:" text="{PreviousCuadroPageModel>/importe}" titleActive="false" visible="true"/>
+                            <ObjectIdentifier title="CARENCIA" text="{PreviousCuadroPageModel>/carencia}" titleActive="false" visible="true"/>
+                            <ObjectIdentifier title="DEMORAS" text="" titleActive="false" visible="true"/>
                             <layout:HorizontalLayout>
                                 <layout:content/>
                             </layout:HorizontalLayout>
@@ -72,7 +68,7 @@
                         <cells>
                             <ObjectIdentifier title="VENCIMIENTOS:" text="MENSUALES" titleActive="false" visible="true"/>
                             <ObjectIdentifier title="DIAS:" text="360" titleActive="false" visible="true"/>
-                            <ObjectIdentifier title="PLAZOS" text="6" titleActive="false" visible="true"/>
+                            <ObjectIdentifier title="PLAZOS" text="{PreviousCuadroPageModel>/plazo}" titleActive="false" visible="true"/>
                             <layout:HorizontalLayout>
                                 <layout:content/>
                             </layout:HorizontalLayout>
@@ -142,13 +138,13 @@
                     <ColumnListItem type="Active">
                         <cells>
                             <ObjectIdentifier title="{CuadroPrestamoModel>fecha}" text="" titleActive="false" visible="true"/>
-                            <Text text="{CuadroPrestamoModel>disposiciones}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
-                            <ObjectNumber number="{CuadroPrestamoModel>capAmortizado}" unit="" emphasized="true" state="None"/>
-                            <Text text="{CuadroPrestamoModel>tipo}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
-                            <Text text="{CuadroPrestamoModel>cuotas}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
-                            <Text text="{CuadroPrestamoModel>amortizaciones}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
-                            <Text text="{CuadroPrestamoModel>intereses}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
-                            <Text text="{CuadroPrestamoModel>capPendiente}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                            <Text text="{parts: [{path: 'CuadroPrestamoModel>disposicion'}], formatter: '.formatter.formatToFixed2'}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                            <ObjectNumber number="{parts: [{path: 'CuadroPrestamoModel>capAmortizado'}], formatter: '.formatter.formatToFixed2'}" unit="" emphasized="true" state="None"/>
+                            <Text text="{parts: [{path: 'CuadroPrestamoModel>tipo'}], formatter: '.formatter.formatToFixed2'}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                            <Text text="{parts: [{path: 'CuadroPrestamoModel>cuotas'}], formatter: '.formatter.formatToFixed2'}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                            <Text text="{parts: [{path: 'CuadroPrestamoModel>amortizaciones'}], formatter: '.formatter.formatToFixed2'}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                            <Text text="{parts: [{path: 'CuadroPrestamoModel>intereses'}], formatter: '.formatter.formatToFixed2'}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                            <Text text="{parts: [{path: 'CuadroPrestamoModel>capPendiente'}], formatter: '.formatter.formatToFixed2'}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
                         </cells>
                     </ColumnListItem>
                 </items>

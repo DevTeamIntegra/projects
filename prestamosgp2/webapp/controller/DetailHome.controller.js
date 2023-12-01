@@ -1,8 +1,9 @@
 sap.ui.define(["sap/ui/core/mvc/Controller",
 	"sap/m/MessageBox",
 	"./utilities",
-	"sap/ui/core/routing/History"
-], function(BaseController, MessageBox, Utilities, History) {
+	"sap/ui/core/routing/History",
+    "sap/ui/model/json/JSONModel"
+], function(BaseController, MessageBox, Utilities, History,JSONModel) {
 	"use strict";
 
 	return BaseController.extend("prestamosgp2.controller.DetailHome", {
@@ -43,6 +44,11 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 
 		},
 		onInit: function() {
+			const sPath = sap.ui.require.toUrl("prestamosgp2/img/logoICO.jpg");
+			const oModel = new JSONModel({imagePath:sPath});
+			this.getView().setModel(oModel,"oImg");
+			this.getOwnerComponent().setModel(oModel,"oImgModel");
+			
 			this.oRouter = sap.ui.core.UIComponent.getRouterFor(this);
 			this.oRouter.getTarget("DetailHome").attachDisplay(jQuery.proxy(this.handleRouteMatched, this));
 			var oView = this.getView();

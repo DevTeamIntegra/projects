@@ -47,19 +47,26 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 
 		},
 		_onButtonPress: function(oEvent) {
-			this.getOwnerComponent().setModelVivienda(models.getSimulacionVivienda(this.getEntries(), this.getOwnerComponent().oToken, this.getView()));
+			var oThis = this;
 
-			var oBindingContext = oEvent.getSource().getBindingContext();
-			this.getOwnerComponent().setModel(new JSONModel(this.getEntries()), 'PreviousViviendaPageModel');
+			var oEntries = this.getEntries();
+			if(oEntries != false){
+				oThis.getOwnerComponent().dialog.open();
+				this.getOwnerComponent().setModelVivienda(models.getSimulacionVivienda(this.getEntries(), this.getOwnerComponent().oToken, this.getView()));
 
-			return new Promise(function(fnResolve) {
+				var oBindingContext = oEvent.getSource().getBindingContext();
+				this.getOwnerComponent().setModel(new JSONModel(this.getEntries()), 'PreviousViviendaPageModel');
 
-				this.doNavigate("DetailVivienda2", oBindingContext, fnResolve, "");
-			}.bind(this)).catch(function(err) {
-				if (err !== undefined) {
-					MessageBox.error(err.message);
-				}
-			});
+				return new Promise(function(fnResolve) {
+					oThis.getOwnerComponent().dialog.close();
+					this.doNavigate("DetailVivienda2", oBindingContext, fnResolve, "");
+				}.bind(this)).catch(function(err) {
+					if (err !== undefined) {
+						oThis.getOwnerComponent().dialog.close();
+						MessageBox.error(err.message);
+					}
+				});
+			}
 		},
 		doNavigate: function(sRouteName, oBindingContext, fnPromiseResolve, sViaRelation) {
 			var sPath = (oBindingContext) ? oBindingContext.getPath() : null;
@@ -150,7 +157,17 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 			var oCarencia = parseInt(this.byId("idCBoxViviendaCarencia").getSelectedKey());
 			var oCondicion = parseInt(this.byId("idCBoxViviendaCondicion").getSelectedKey());
 			var oMes = this.byId("idCBoxViviendaMes").getSelectedKey();
+			if(oMes == '13'){
+				Utils.showErrorMsg("El mes no puede estar vacío")// Opcionalmente, puedes manejar un caso de error aquí
+				return false;
+			}			
 			var oAnyo = this.byId("idLabelViviendaAnyo").getValue();
+			var oInicioPrestamo = Utils.getDate("01/"+ oMes.toString() + "/" + oAnyo.toString());
+			var oActualDate = new Date();
+			if(oInicioPrestamo <= oActualDate){
+				Utils.showErrorMsg("La fecha de inicio no puede ser menor a la fecha actual")// Opcionalmente, puedes manejar un caso de error aquí
+				return false;
+			}
 			var oImporte = this.byId("idSliderVivviendaImporte").getValue();
 			var oTotalAnyos = parseInt(this.byId("idSliderViviendaAnyos").getValue());
 			return {

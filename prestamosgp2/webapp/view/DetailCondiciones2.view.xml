@@ -35,6 +35,11 @@
                             <Input id="idImporte" type="Text" showValueHelp="false" enabled="true" visible="true" width="auto" valueHelpOnly="false" required="false" valueStateText="Invalid entry" maxLength="0"/>
                         </content>
                     </InputListItem>
+                    <InputListItem label="Importe prestamo actual:" visible="true">
+                        <content>
+                            <Input id="idImportePrestamo" value="{PrestamosUser>/0/importe}" type="Text" showValueHelp="false" enabled="false" visible="true" width="auto" valueHelpOnly="false" required="false" valueStateText="Invalid entry" maxLength="0"/>
+                        </content>
+                    </InputListItem>
                     <InputListItem label="Nueva condición préstamo: *" visible="true">
                         <content>
                             <ComboBox  id="idNuevaCondicion" editable="true" enabled="true" visible="true" width="auto" valueState="None" maxWidth="100%">

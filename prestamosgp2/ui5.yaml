@@ -25,9 +25,9 @@ server:
           - path: /odata/v2 # Nueva conexión
             url: https://hcm55.sapsf.eu
             destination: SuccessFactor_v2
-          - path: /sap/opu/odata/sap/ZHR_ODATA_TEST_SRV_01 # Nueva conexión
+          - path: /sap/opu/odata/sap/ZHR_ODATA_CUADRO_PRESTAMO_SRV # Nueva conexión
             url: https://my550714.payroll.sapsf.eu
-            destination: ECP_GSV  
+            destination: ECP_GSV
     - name: fiori-tools-appreload
       afterMiddleware: compression
       configuration:

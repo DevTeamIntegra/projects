@@ -198,48 +198,64 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 
 		_onSegmentedButtonEjecutarPress : function (oEvent){
 			var oThis = this;
-			var oSelectedPrestamo;
 			var oPrestamosModel = this.getOwnerComponent().getModel('PrestamosUser');
 			var oComboBox = oThis.getView().byId("idComboBoxNPrestamo");
 			var oTipo = oComboBox.getSelectedKey();
-
-			oPrestamosModel.oData.forEach((oPrestamo) => {
-				if(oPrestamo.producto == oTipo){
-					oSelectedPrestamo = oPrestamo;
+			var oSelectedPrestamo;
+			if(oPrestamosModel){
+				oPrestamosModel.oData.forEach((oPrestamo) => {
+					if(oPrestamo.producto == oTipo){
+						oSelectedPrestamo = oPrestamo;
+					}
+				});
+				if(oSelectedPrestamo){
+					oThis.getOwnerComponent().dialog.open();
+					oThis.getOwnerComponent().setModelCuadro(models.getCuadroByPrestamo(oSelectedPrestamo.idPrestamo, oThis.getOwnerComponent()));
 				}
-			});
+			}
 
-			oThis.getOwnerComponent().setModelCuadro(models.getCuadroByPrestamo(oSelectedPrestamo.idPrestamo, oThis.getOwnerComponent()));
+			var oEntries = oThis.getEntries(oThis,oTipo,oSelectedPrestamo);
+			if(oEntries != false){
+				var oBindingContext = oEvent.getSource().getBindingContext();
+				oThis.getOwnerComponent().setModel(new JSONModel(oThis.getEntries(oThis,oTipo,oSelectedPrestamo)), 'PreviousCuadroPageModel');
 
-			var oBindingContext = oEvent.getSource().getBindingContext();
-			//this.getOwnerComponent().setModel(new JSONModel(this.getEntries()), 'PreviousCuadroPageModel');
-
-			return new Promise(function(fnResolve) {
-
-				this.doNavigate("DetailCuadro2", oBindingContext, fnResolve, "");
-			}.bind(this)).catch(function(err) {
-				if (err !== undefined) {
-					MessageBox.error(err.message);
-				}
-			});
+				return new Promise(function(fnResolve) {
+					oThis.getOwnerComponent().dialog.close();
+					this.doNavigate("DetailCuadro2", oBindingContext, fnResolve, "");
+				}.bind(this)).catch(function(err) {
+					if (err !== undefined) {
+						oThis.getOwnerComponent().dialog.close();
+						MessageBox.error(err.message);
+					}
+				});
+			}	
+			oThis.getOwnerComponent().dialog.close();
+			
 		},
-		getEntries:function(){
-			//var oTipo = Utils.getTipoNum(this.byId("idComboBoxCuadro").getSelectedKey());
-			var oTipo = this.byId("idComboBoxCuadro").getSelectedKey();
-			var oCarencia = parseInt(this.byId("idCBoxViviendaCarencia").getSelectedKey());
-			var oCondicion = parseInt(this.byId("idCBoxViviendaCondicion").getSelectedKey());
-			var oMes = this.byId("idCBoxViviendaMes").getSelectedKey();
-			var oAnyo = this.byId("idLabelViviendaAnyo").getValue();
-			var oImporte = this.byId("idSliderVivviendaImporte").getValue();
-			var oTotalAnyos = parseInt(this.byId("idSliderViviendaAnyos").getValue());
+		getEntries:function(oThis,oTipo,oSelectedPrestamo){
+			var oItemSelected = this.byId("idComboBoxCuadro").getSelectedKey();
+			var oItemNPrestamo = this.byId("idComboBoxNPrestamo").getSelectedKey();
+			if(oItemSelected == '' ||oItemSelected == undefined || oItemSelected == null || oItemNPrestamo == '' ||oItemNPrestamo == undefined || oItemNPrestamo == null){
+				Utils.showErrorMsg("Debes seleccionar un tipo de prestamo y/o número");
+				return false;
+			}
+			var oPrestamoModel = oThis.getOwnerComponent().getModel('CuadroPrestamoModel');
+			oPrestamoModel = oPrestamoModel.oData;
+			var oPrimerPlazo = Utils.convertirFecha(oPrestamoModel[0].fecha);
+			var oUltimoPlazo = Utils.convertirFecha(oPrestamoModel[oPrestamoModel.length-1].fecha);
+			var diferenciaMilisegundos = oUltimoPlazo - oPrimerPlazo;
+			var diferenciaAnios = diferenciaMilisegundos / (1000 * 60 * 60 * 24 * 365.25);
+			var diferenciaAniosRedondeada = Math.floor(diferenciaAnios);
+			var oMes = oPrimerPlazo.getMonth() + 1;
+			var oAnyo = oPrimerPlazo.getFullYear();
 			return {
 				tipoPrestamo : oTipo,
-				carencia : oCarencia,
-				crecimiento : oCondicion,
+				carencia : 0,
+				crecimiento : 0,
 				mesInicio : oMes,
 				anioInicio : oAnyo,
-				importe : oImporte,
-				plazo : oTotalAnyos
+				importe : oSelectedPrestamo.importe,
+				plazo : diferenciaAniosRedondeada
 			}
 		},
 

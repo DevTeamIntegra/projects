@@ -87,7 +87,7 @@ sap.ui.define([
         toFormatDatePrint : function(oDate){
             var partesFecha = oDate.split("/");
             //2023-01-01
-            return partesFecha[2] + "-" + partesFecha[1] + "-" + partesFecha[0];
+            return partesFecha[2] + partesFecha[1] + partesFecha[0];
         },
         abrirVisorPDF: function(base64PDF) {
             // Crear un objeto Blob a partir del contenido en Base64
@@ -130,7 +130,23 @@ sap.ui.define([
                     CaPte: subItem.CaPte
                 }))
             };
+        },
+        convertirFecha:function(oFecha){
+            const [dia, mes, anio] = oFecha.split('/');
+            return new Date(`${anio}`, mes - 1, dia);
+        },
+        generateCodigoSimulacion:function(){
+            // Generar números aleatorios para cada segmento del código
+            var segmento1 = Math.floor(Math.random() * 1000);
+            var segmento2 = Math.floor(Math.random() * 10000);
+            var segmento3 = Math.floor(Math.random() * 10000);
+
+            // Formatear los segmentos con ceros a la izquierda según sea necesario
+            var codigo = segmento1.toString().padStart(3, '0') +
+                        segmento2.toString().padStart(4, '0') +
+                        segmento3.toString().padStart(4, '0');
+
+            return codigo;
         }
-        
     };
 });

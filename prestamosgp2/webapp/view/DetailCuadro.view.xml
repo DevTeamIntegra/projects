@@ -9,9 +9,8 @@
                         <content>
                             <ComboBox id="idComboBoxCuadro" editable="true" enabled="true" visible="true" width="auto" valueState="None" maxWidth="100%" selectionChange="_onChangeTipoPrestamo">
                                 <items>
-                                    <core:Item text="ANTICIPO SIN INTERESES" enabled="true" key="ANTICIPO SIN INTERESES"/>
+                                    <core:Item text="ANTICIPO SIN INTERESES" enabled="true" key="0"/>
                                     <core:Item text="PRÉSTAMO CONSUMO" enabled="true" key="1"/>
-                                    <core:Item text="PRÉSTAMO PC" enabled="true" key="PRÉSTAMO PC"/>
                                     <core:Item text="PRÉSTAMO VIVIENDA" enabled="true" key="2"/>
                                 </items>
                             </ComboBox>

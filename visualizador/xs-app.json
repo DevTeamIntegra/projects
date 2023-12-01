@@ -3,10 +3,17 @@
   "authenticationMethod": "route",
   "routes": [
     {
-      "source": "^/nassa/(.*)$",
-      "target": "/nassa/$1",
-      "destination": "TokenPrestamosGP",
-      "authenticationType": "xsuaa",
+      "source": "^/odata/v2/(.*)$",
+      "target": "/odata/v2/$1",
+      "destination": "SuccessFactor_v2",
+      "authenticationType": "none",
+      "csrfProtection": false
+    },
+    {
+      "source": "^sap/opu/odata/sap/ZHR_XXX_0050_ODATA_SRV/(.*)$",
+      "target": "sap/opu/odata/sap/ZHR_XXX_0050_ODATA_SRV/$1",
+      "destination": "ECP_GSV",
+      "authenticationType": "none",
       "csrfProtection": false
     },
     {

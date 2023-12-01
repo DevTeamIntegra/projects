@@ -8,9 +8,10 @@ sap.ui.define([
 	"sap/ui/model/Filter",
 	"sap/ui/model/FilterOperator",
     "sap/m/MessageToast",
+	"visualizador/utils/utils",
 
     ],
-    function (UIComponent, Device, ODataModel, JSONModel, models, constants, Filter, FilterOperator,MessageToast) {
+    function (UIComponent, Device, ODataModel, JSONModel, models, constants, Filter, FilterOperator,MessageToast, Utils) {
         "use strict";
 
         return UIComponent.extend("visualizador.Component", {
@@ -23,7 +24,7 @@ sap.ui.define([
              * @public
              * @override
              */
-            init: function () {
+            init: async function () {
                 // call the base component's init function
                 UIComponent.prototype.init.apply(this, arguments);
 
@@ -33,7 +34,15 @@ sap.ui.define([
                 // set the device model
                 this.setModel(models.createDeviceModel(), "device");
 
-                this.loadODataModel();
+                this.processId = Utils.getProcessFromURL();
+
+                await models.getUserInfoAndRole(this);
+                if(this.user){			
+                    var oUserInfo = models.getMoreUserInfo(this);
+                    this.setModel(oUserInfo, "UserInfo");
+                }
+
+                //this.loadODataModel();
 
                 // Se realiza la llamada para traer el usuario logado //
                 // this.setLogUserModel();
@@ -59,27 +68,28 @@ sap.ui.define([
 
             loadODataModel: function () {
                 var sDomain = window.location.hostname;
-                var oModel = this.getModel("BricomartModel");
+                var oModel = this.getModel("MainModel");
                 var sProtocol = window.location.protocol + "//";
-                var sRequest = window.location.search;
+                //var sRequest = window.location.search;
+                var sRequest = constants.sRequest;
                 //var sProcessId = this.getProcessId(sRequest); 
                 //if (sDomain.includes(constants.HANA_DEV)) {
-                if (sDomain === "localhost" || sDomain === "127.0.0.1" || sDomain.includes(constants.SAP_DEV_DOMAIN)) {
+                if (sDomain.includes(constants.APP_DEV_DOMAIN) || window.location.href.includes('test')) {
                     var sServiceUrl = oModel.sServiceUrl;
                     var sURI = sProtocol + constants.SAP_DEV_DOMAIN + sServiceUrl + sRequest;
                     oModel = new ODataModel(sURI, {
                         useBatch: false
                     });
-                    this.setModel(oModel, "BricomartModel");
+                    this.setModel(oModel, "MainModel");
                 }else if(sDomain.includes(constants.SAP_PROD_DOMAIN)){
                     var sServiceUrl = oModel.sServiceUrl;
                     var sURI = sProtocol + constants.SAP_PROD_DOMAIN + sServiceUrl + sRequest;
                     oModel = new ODataModel(sURI, {
                         useBatch: false
                     });
-                    this.setModel(oModel, "BricomartModel");
+                    this.setModel(oModel, "MainModel");
                 }else{
-                    this.setModel(new JSONModel(), "BricomartModel");
+                    this.setModel(new JSONModel(), "MainModel");
 
                 }
             },
@@ -92,7 +102,7 @@ sap.ui.define([
             */
             setPortal: function()
             {
-                var oModel = this.getModel("BricomartModel"),
+                var oModel = this.getModel("MainModel"),
                     oParameters = {
                         success: function (oData)
                         {
@@ -111,7 +121,7 @@ sap.ui.define([
 
             setLogUserModel: function () 
             {
-                var oUserModel = this.getModel("BricomartModel");
+                var oUserModel = this.getModel("MainModel");
 
                 oUserModel.read(constants.PATH_USUARIO, {
                     success: function (oData) 
@@ -151,7 +161,7 @@ sap.ui.define([
 
             getSolicitudesPendientesModel: function()
             {
-                var oModel = this.getModel("BricomartModel"),
+                var oModel = this.getModel("MainModel"),
                     aFilters = [new Filter("Estado", FilterOperator.EQ, "1")],
                     oParameters = {
                     filters: aFilters,

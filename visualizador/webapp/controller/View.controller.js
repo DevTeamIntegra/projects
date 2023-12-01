@@ -24,15 +24,15 @@ sap.ui.define(
         },
 
         onAfterRendering: function(){
-          this._getEjerciciosModelTEST();
+          /* this._getEjerciciosModelTEST();
           this._getColoresModelTEST();
           this._getTextosModelTEST();
-          this._getItemsModelTEST();
-            /* this._getEjerciciosModel();
+          this._getItemsModelTEST(); */
+            this._getEjerciciosModel();
             this._getColoresModel();
             this._getTextosModel();
             this._getItemsModel();
-            this._getUrlsModel(); */
+            //this._getUrlsModel();
           },
   
         _changeSelectedFormat: function (aEjercicios) {
@@ -65,10 +65,14 @@ sap.ui.define(
           let oGlobalBusyDialog = new sap.m.BusyDialog();
           oGlobalBusyDialog.open();
           var that = this;
-          let oModel = that.getView().getModel("BricomartModel"),
+          sYear ? sYear = sYear : sYear  = new Date().getFullYear() - 1;
+
+          let oModel = that.getView().getModel("MainModel"),
             oHttpParameters = {
               headers: {
-                year: sYear,
+                "year": sYear,
+                "processid" : that.getOwnerComponent().processId,
+                "sap-language" : sap.ui.getCore().getConfiguration().getLanguageTag()
               },
               success: function (oData) {
                 this.getView().byId("_IDGenPDFViewer").setVisible(true);
@@ -77,6 +81,10 @@ sap.ui.define(
                 if (aEjercicios.length === 0) {
                   oGlobalBusyDialog.close();
                   MessageBox.error(that.getView().getModel("i18n").getResourceBundle().getText("view_controller_msg1"));
+                }
+                if(aEjercicios[0].Pdf == ''){
+                  oGlobalBusyDialog.close();
+                  MessageBox.error(that.getView().getModel("i18n").getResourceBundle().getText("no_pdf_msg1"));
                 }
                 aEjercicios = that._changeSelectedFormat(aEjercicios);
                 that.getView().setModel(new JSONModel(aEjercicios), "EjerciciosModel");
@@ -96,7 +104,7 @@ sap.ui.define(
               }.bind(this),
               error: function (oError) {
                 oGlobalBusyDialog.close();
-                //console.log(this.getView().getModel("BricomartModel"))
+                //console.log(this.getView().getModel("MainModel"))
                 MessageBox.error(that.getView().getModel("i18n").getResourceBundle().getText("view_controller_msg2"));
               },
             };
@@ -105,8 +113,15 @@ sap.ui.define(
 
         _getColoresModel: function (sYear, sSelected) {
           var that = this;
-          let oModel = that.getView().getModel("BricomartModel"),
+          sYear ? sYear = sYear : sYear  = new Date().getFullYear() - 1;
+
+          let oModel = that.getView().getModel("MainModel"),
             oHttpParameters = {
+              headers: {
+                "year": sYear,
+                "processid" : that.getOwnerComponent().processId,
+                "sap-language" : sap.ui.getCore().getConfiguration().getLanguageTag()
+              },
               success: function (oData) {
                 this.myColors = oData.results;
               }.bind(this),
@@ -120,8 +135,15 @@ sap.ui.define(
 
         _getTextosModel: function (sYear, sSelected) {
           var that = this;
-          let oModel = that.getView().getModel("BricomartModel"),
+          sYear ? sYear = sYear : sYear  = new Date().getFullYear() - 1;
+
+          let oModel = that.getView().getModel("MainModel"),
             oHttpParameters = {
+              headers: {
+                "year": sYear,
+                "processid" : that.getOwnerComponent().processId,
+                "sap-language" : sap.ui.getCore().getConfiguration().getLanguageTag()
+              },
               success: function (oData) {
                 this.myTexts = oData.results;
                 that.getView().setModel(new JSONModel(this.myTexts),'TextsSet'); 
@@ -137,8 +159,15 @@ sap.ui.define(
 
         _getItemsModel: function (sYear, sSelected) {
           var that = this;
-          let oModel = that.getView().getModel("BricomartModel"),
+          sYear ? sYear = sYear : sYear  = new Date().getFullYear() - 1;
+
+          let oModel = that.getView().getModel("MainModel"),
             oHttpParameters = {
+              headers: {
+                "year": sYear,
+                "processid" : that.getOwnerComponent().processId,
+                "sap-language" : sap.ui.getCore().getConfiguration().getLanguageTag()
+              },
               success: function (oData) {
                 this.myItems = oData.results;
                 that.getView().setModel(new JSONModel(this.myItems),'ItemSet');
@@ -153,8 +182,15 @@ sap.ui.define(
 
         _getUrlsModel: function (sYear, sSelected) {
           var that = this;
-          let oModel = that.getView().getModel("BricomartModel"),
+          sYear ? sYear = sYear : sYear  = new Date().getFullYear() - 1;
+
+          let oModel = that.getView().getModel("MainModel"),
             oHttpParameters = {
+              headers: {
+                "year": sYear,
+                "processid" : that.getOwnerComponent().processId,
+                "sap-language" : sap.ui.getCore().getConfiguration().getLanguageTag()
+              },
               success: function (oData) {
                 this.myUrls = oData.results;
                 that.getView().setModel(new JSONModel(this.myUrls),'UrlsSet');
@@ -232,13 +268,16 @@ sap.ui.define(
           oRouter.navTo("RouteSummary");
         },
   
-        _getPayrollModel: function (sYear) {
-  
+        _getPayrollModel: function (sYear) {  
           var that = this;
+          sYear ? sYear = sYear : sYear  = new Date().getFullYear() - 1;
+
           let oModel = this.getView().getModel(),
             oHttpParameters = {
               headers: {
-                year: sYear,
+                "year": sYear,
+                "processid" : that.getOwnerComponent().processId,
+                "sap-language" : sap.ui.getCore().getConfiguration().getLanguageTag()
               },
               urlParameters: {
                 "$expand": "PeriodoNav/PayrollNav"

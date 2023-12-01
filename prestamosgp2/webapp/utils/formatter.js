@@ -37,6 +37,25 @@ sap.ui.define([
             }else{
                 return oFullAddress += oPlanta + 'º' + oPuerta.toUpperCase(); 
             }
+        },
+        formatToFixed2:function(value) {
+            if (typeof value === 'number' && !isNaN(value) && Number.isFinite(value)) {
+                return value.toFixed(2);
+            } else {
+                const parsedFloat = parseFloat(value);
+                if (!isNaN(parsedFloat) && Number.isFinite(parsedFloat)) {
+                    return parsedFloat.toFixed(2);
+                } else {
+                    return "N/A";
+                }
+            }
+        },
+        formatDateTitle:function(oThis){
+            var oDate = new Date();
+            var oDay = oDate.getDate();
+            var oMonth = oDate.getMonth() + 1;
+            var oYear = oDate.getFullYear();
+            return "FECHA: " + oDay.toString() + "." + oMonth.toString() + "." +  oYear.toString();
         }
     };
 });

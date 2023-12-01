@@ -2,12 +2,16 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 	"sap/m/MessageBox",
 	"./utilities",
 	"sap/ui/core/routing/History",
-	"prestamosgp2/model/models"
+	"prestamosgp2/model/models",
+	"prestamosgp2/utils/utils",
+	"prestamosgp2/utils/formatter"
 
-], function(BaseController, MessageBox, Utilities, History,models) {
+], function(BaseController, MessageBox, Utilities, History,models, Utils,formatter) {
 	"use strict";
 
 	return BaseController.extend("prestamosgp2.controller.DetailCondiciones3", {
+		formatter:formatter,
+		
 		handleRouteMatched: function(oEvent) {
 			var sAppId = "App64ca9cab5325fba361b2af22";
 
@@ -142,6 +146,22 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 
 			oUserModel.oData.listaCuotas = oSimuPrestamoModel.oData;
 			oUserModel.refresh();
+		},
+		_onSegmentedButtonImprimirPress: function(oEvent) {
+			var oThis = this;
+			oThis.getOwnerComponent().dialog.open();
+			var CuadroPrestamoModel = oThis.getView().getModel('SimuCondicionesModel');
+			var oUserModel = oThis.getView().getModel('UserInfoComplete');
+			var oPrestamosUserModel = oThis.getView().getModel('PrestamosUser');
+			var oPrestamo = oPrestamosUserModel.oData.find(p => p.dni == oUserModel.oData.dni);
+
+			oUserModel.oData.listaCuotas = CuadroPrestamoModel.oData;
+			oUserModel.oData.codigo = oPrestamo.idPrestamo;
+			oUserModel.oData.importe = oPrestamo.importe;
+			oUserModel.refresh();
+
+			Utils.abrirVisorPDF(models.sendToPrint(models.formatModelToPrint(oUserModel.oData, 'X'), models.getCsrfToken()));
+			oThis.getOwnerComponent().dialog.close();
 		}
 	});
 }, /* bExport= */ true);

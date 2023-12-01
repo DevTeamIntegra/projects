@@ -3,7 +3,7 @@
         <content>
             <Title text="INSTITUTO DE CRÉDITO OFICIAL" titleStyle="H3" width="100%" textAlign="Center" visible="true" wrapping="false"/>
             <Title text="Simulación del cálculo del cuadro de intereses de un préstamo de vivienda" titleStyle="H5" width="100%" textAlign="Center" visible="true" wrapping="false"/>
-            <Title text="FECHA:03.08.2023" titleStyle="H6" width="100%" textAlign="Center" visible="true" wrapping="false"/>
+            <Title text="{parts: [{path: 'UserInfoComplete>/dni'}], formatter: '.formatter.formatDateTitle'}" titleStyle="H6" width="100%" textAlign="Center" visible="true" wrapping="false"/>
             <Table id="idTableVivienda" width="75%" noDataText="No data" mode="None" showSeparators="All" growing="true" growingThreshold="20" growingScrollToLoad="true" class="sapUiTinyMarginTop sapUiTinyMarginBottom sapUiLargeMarginBegin sapUiLargeMarginEnd">
                 <infoToolbar>
                     <Toolbar width="100%" height="auto" design="Auto" visible="false" enabled="true">
@@ -46,8 +46,8 @@
                     </ColumnListItem>
                     <ColumnListItem type="Active">
                         <cells>
-                            <ObjectIdentifier title="DOMICILIO:" text="{parts: [{path: 'UserInfoComplete>/calle'}, {path: 'UserInfoComplete>/numero'}, {path: 'UserInfoComplete>/planta'}, {path: 'UserInfoComplete>/puerta'}, {path: 'UserInfoComplete>/ciudad'}], formatter: '.formatAddress'}" titleActive="false" visible="true"/>
-                            <ObjectIdentifier title="POBLACIÓN:" text="{UserInfoComplete>/provincia}" titleActive="false" visible="true"/>
+                            <ObjectIdentifier title="DOMICILIO:" text="{parts: [{path: 'UserInfoComplete>/calle'}, {path: 'UserInfoComplete>/numero'}, {path: 'UserInfoComplete>/planta'}, {path: 'UserInfoComplete>/puerta'}, {path: 'UserInfoComplete>/ciudad'}], formatter: '.formatter.formatAddress'}" titleActive="false" visible="true"/>
+                            <ObjectIdentifier title="POBLACIÓN:" text="{UserInfoComplete>/ciudad}" titleActive="false" visible="true"/>
                             <ObjectIdentifier title="COD. POST:" text="{UserInfoComplete>/cp}" titleActive="false" visible="true"/>
                         </cells>
                     </ColumnListItem>
@@ -137,13 +137,13 @@
                     <ColumnListItem type="Active">
                         <cells>
                             <ObjectIdentifier title="{SimuViviendaModel>fecha}" text="" titleActive="false" visible="true"/>
-                            <Text text="{SimuViviendaModel>disposiciones}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
-                            <ObjectNumber number="{SimuViviendaModel>capAmortizado}" unit="" emphasized="true" state="None"/>
-                            <Text text="{SimuViviendaModel>tipo}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
-                            <Text text="{SimuViviendaModel>cuotas}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
-                            <Text text="{SimuViviendaModel>amortizaciones}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
-                            <Text text="{SimuViviendaModel>intereses}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
-                            <Text text="{SimuViviendaModel>capPendiente}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                            <Text text="{parts: [{path: 'SimuViviendaModel>disposiciones'}], formatter: '.formatter.formatToFixed2'}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                            <ObjectNumber number="{parts: [{path: 'SimuViviendaModel>capAmortizado'}], formatter: '.formatter.formatToFixed2'}" unit="" emphasized="true" state="None"/>
+                            <Text text="{parts: [{path: 'SimuViviendaModel>tipo'}], formatter: '.formatter.formatToFixed2'}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                            <Text text="{parts: [{path: 'SimuViviendaModel>cuotas'}], formatter: '.formatter.formatToFixed2'}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                            <Text text="{parts: [{path: 'SimuViviendaModel>amortizaciones'}], formatter: '.formatter.formatToFixed2'}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                            <Text text="{parts: [{path: 'SimuViviendaModel>intereses'}], formatter: '.formatter.formatToFixed2'}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                            <Text text="{parts: [{path: 'SimuViviendaModel>capPendiente'}], formatter: '.formatter.formatToFixed2'}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
                         </cells>
                     </ColumnListItem>
                 </items>

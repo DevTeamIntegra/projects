@@ -27,6 +27,12 @@ sap.ui.define([
 		 * @override
 		 */
 		init: async function() {
+			var oThis = this;
+			oThis.dialog = new sap.m.BusyDialog({
+				text:'Loading Data...'
+				});
+			oThis.dialog.open();
+
 			this.oEntries = {};
 			var oThis = this;
 			this.oListSelector = new ListSelector();
@@ -75,6 +81,7 @@ sap.ui.define([
 
 			// create the views based on the url/hash
 			this.getRouter().initialize();
+			oThis.dialog.close();
 		},
 
 		/**

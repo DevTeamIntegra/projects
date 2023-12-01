@@ -11,6 +11,8 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 	"use strict";
 
 	return BaseController.extend("prestamosgp2.controller.DetailVivienda2", {
+		formatter:formatter,
+		
 		handleRouteMatched: function(oEvent) {
 			var sAppId = "App64ca9cab5325fba361b2af22";
 
@@ -143,6 +145,22 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 
 			oUserModel.oData.listaCuotas = SimuViviendaModel.oData;
 			oUserModel.refresh();
+		},
+		_onSegmentedButtonImprimirPress: function(oEvent) {
+			var oThis = this;
+			oThis.getOwnerComponent().dialog.open();
+			var CuadroPrestamoModel = oThis.getView().getModel('SimuViviendaModel');
+			var oUserModel = oThis.getView().getModel('UserInfoComplete');
+			var oPrestamosUserModel = oThis.getView().getModel('PrestamosUser');
+			var oPrestamo = oPrestamosUserModel.oData.find(p => p.dni == oUserModel.oData.dni);
+
+			oUserModel.oData.listaCuotas = CuadroPrestamoModel.oData;
+			oPrestamo ? oUserModel.oData.codigo = oPrestamo.idPrestamo : oUserModel.oData.codigo = Utils.generateCodigoSimulacion();
+			oPrestamo ? oUserModel.oData.importe = oPrestamo.importe : oUserModel.oData.importe = CuadroPrestamoModel.oData[0].capPendiente.toString();
+			oUserModel.refresh();
+
+			Utils.abrirVisorPDF(models.sendToPrint(models.formatModelToPrint(oUserModel.oData, 'X'), models.getCsrfToken()));
+			oThis.getOwnerComponent().dialog.close();
 		}
 	});
 }, /* bExport= */ true);

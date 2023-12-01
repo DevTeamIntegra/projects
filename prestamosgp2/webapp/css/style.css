@@ -7,7 +7,7 @@
 
 /* --------------------------- MASTER PAGE ---------------------- */
 [id*="MasterPage1--idTitleMaster-intHeader-BarPH"]{
-    background-color: #aa231d;
+    background-color: #952626;
 }
 [id*="MasterPage1--idTitleMaster-title-inner"]{
     color: white;
@@ -16,23 +16,23 @@
 /********************************************************************/
 /* --------------------------- DETAIL CUADRO ---------------------- */
 [id*="DetailCuadro--idTitleCuadro1-intHeader-BarPH"]{
-    background-color: #aa231d;
+    background-color: #952626;
 }
 [id*="DetailCuadro--idTitleCuadro1-title-inner"]{
     color: white;
 }
 [id*="DetailCuadro--idListCuadro-header"]{
-    background-color: #aa231d;
+    background-color: #952626;
     color: white;
 }
 [id*="DetailCuadro2--idTitleCuadro2-intHeader-BarPH"]{
-    background-color: #aa231d;
+    background-color: #952626;
 }
 [id*="DetailCuadro2--idTitleCuadro2-title-inner"]{
     color: white;
 }
 [id*="DetailCuadro2--idTableCuadro tr th"]{
-    background-color: #aa231d;
+    background-color: #952626;
     color: white;
 }
 [id*="DetailCuadro2--idCuadroTC1-ah span"]{
@@ -52,23 +52,23 @@
 
 /*-------------------------------- Detail Vivienda -----------------------------  */
 [id*="DetailVivienda--idTitleVivienda1-intHeader-BarPH"]{
-    background-color: #aa231d;
+    background-color: #952626;
 }
 [id*="DetailVivienda--idTitleVivienda1-title-inner"]{
     color: white;
 }
 [id*="DetailVivienda2--idTitleVivienda2-intHeader-BarPH"]{
-    background-color: #aa231d;
+    background-color: #952626;
 }
 [id*="DetailVivienda2--idTitleVivienda2-title-inner"]{
     color: white;
 }
 [id*="DetailVivienda--idListVivienda-header"]{
-    background-color: #aa231d;
+    background-color: #952626;
     color: white;
 }
 [id*="DetailVivienda2--idTableVivienda tr th"]{
-    background-color: #aa231d;
+    background-color: #952626;
     color: white;
 }
 [id*="DetailVivienda2--idViviendaTC1-ah span"]{
@@ -77,10 +77,10 @@
 [id*="DetailVivienda2"]{
     text-align: -webkit-center !important;
 }
-[id*="DetailVivienda--idSBDetailVivienda"]{
+/* [id*="DetailVivienda--idSBDetailVivienda"]{
     padding-left: 5% !important;
     padding-right: 5% !important;
-}
+} */
 [id*="DetailVivienda2--idSBDetailVivienda1"]{
     padding-left: 5% !important;
     padding-right: 5% !important;
@@ -90,23 +90,23 @@ container-prestamosgp---DetailVivienda--idSBDetailVivienda
 
 /* ----------------------------------- Detail Consumo ---------------------------- */
 [id*="DetailConsumo--idTitleCuadro1-intHeader-BarPH"]{
-    background-color: #aa231d;
+    background-color: #952626;
 }
 [id*="DetailConsumo--idTitleCuadro1-title-inner"]{
     color: white;
 }
 [id*="DetailConsumo2--idTitleCuadro2-intHeader-BarPH"]{
-    background-color: #aa231d;
+    background-color: #952626;
 }
 [id*="DetailConsumo2--idTitleCuadro2-title-inner"]{
     color: white;
 }
 [id*="DetailConsumo--idListConsumo-header"]{
-    background-color: #aa231d;
+    background-color: #952626;
     color: white;
 }
 [id*="DetailConsumo2--idTableConsumo tr th"]{
-    background-color: #aa231d;
+    background-color: #952626;
     color: white;
 }
 [id*="DetailConsumo2--idConsumoTC1-ah span"]{
@@ -115,48 +115,48 @@ container-prestamosgp---DetailVivienda--idSBDetailVivienda
 [id*="DetailConsumo2--idTitleCuadro2-cont"]{
     text-align: -webkit-center !important;
 }
-[id*="DetailConsumo--idSBDetailConsumo1"]{
+/* [id*="DetailConsumo--idSimularButtonConsumo1"]{
     padding-left: 5% !important;
     padding-right: 5% !important;
-}
+} */
 [id*="DetailConsumo2--idSBDetailConsumo2"]{
     padding-left: 5% !important;
     padding-right: 5% !important;
 }
 [id*="DetailConsumo--idTitleCuadro1-intHeader-BarPH"]{
-    background-color: #aa231d;
+    background-color: #952626;
 }
 
 
 /* ----------------------------------- Detail Condiciones ---------------------------- */
 [id*="DetailCondiciones--idTitleCondiciones1-intHeader-BarPH"]{
-    background-color: #aa231d;
+    background-color: #952626;
 }
 [id*="DetailCondiciones--idTitleCondiciones1-title-inner"]{
     color: white;
 }
 [id*="DetailCondiciones2--idTitleCondiciones2-intHeader-BarPH"]{
-    background-color: #aa231d;
+    background-color: #952626;
 }
 [id*="DetailCondiciones2--idTitleCondiciones2-title-inner"]{
     color: white;
 }
 [id*="DetailCondiciones3--idTitleCondiciones3-intHeader-BarPH"]{
-    background-color: #aa231d;
+    background-color: #952626;
 }
 [id*="DetailCondiciones3--idTitleCondiciones3-title-inner"]{
     color: white;
 }
 [id*="DetailCondiciones--idToolbarCondiciones"]{
-    background-color: #aa231d;
+    background-color: #952626;
     color: white;
 }
 [id*="DetailCondiciones2--idListCondiciones-header"]{
-    background-color: #aa231d;
+    background-color: #952626;
     color: white;
 }
 [id*="DetailCondiciones3--idTableCondiciones tr th"]{
-    background-color: #aa231d;
+    background-color: #952626;
 }
 [id*="DetailCondiciones3--idCondicionesTC1-ah span"]{
     color: white;
@@ -172,14 +172,14 @@ container-prestamosgp---DetailVivienda--idSBDetailVivienda
     padding-left: 5% !important;
     padding-right: 5% !important;
 }
-[id*="DetailCondiciones--idSBDetailCondiciones1"]{
+/* [id*="DetailCondiciones--idSBDetailCondiciones1"]{
     padding-left: 5% !important;
     padding-right: 5% !important;
-}
+} */
 
 /* ------------------------------- DETAIL HOME -------------------------------- */
 [id*="DetailHome--idTitleHome-intHeader-BarPH"]{
-    background-color: #aa231d;
+    background-color: #952626;
 }
 [id*="DetailHome--idTitleHome-title-inner"]{
     color: white;

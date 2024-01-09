@@ -424,7 +424,7 @@ sap.ui.define([
                             'Fecha': Utils.toFormatDatePrint(e.fecha),
                             'Dispo': e.disposicion != null ? e.disposicion.toString() : e.disposiciones.toString(),
                             'CaAmor': e.capAmortizado.toString(),
-                            'TiInt': '1.6', // e.tipoInteres.toString()
+                            'TiInt': e.tipoInteres ? e.tipoInteres.toString() : e.tae ? e.tae.toString() : "0.00",
                             'Cuota': e.cuotas.toString(),
                             'Amort': e.amortizaciones.toString(),
                             'Inter': e.intereses.toString(),
@@ -438,7 +438,7 @@ sap.ui.define([
                     'Base64': '',
                     'Prestatario': oModel.name,
                     'Dni': oModel.dni,
-                    'Tae': "1.6", //oModel.tae.toString()
+                    'Tae': oModel.listaCuotas[1].tipoInteres ? oModel.listaCuotas[1].tipoInteres.toString() : oModel.listaCuotas[1].tae ? oModel.listaCuotas[1].tae.toString() : "0.00",
                     'Domicilio': oAddress,
                     'Poblacion': oModel.ciudad,
                     'Importe': oModel.importe,

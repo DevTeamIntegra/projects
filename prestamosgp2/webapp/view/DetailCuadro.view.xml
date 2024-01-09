@@ -28,8 +28,8 @@
             </List>
             <SegmentedButton id="idSBDetailCuadro" width="100%" enabled="true" visible="true">
                 <items>
-                    <SegmentedButtonItem icon="sap-icon://arrow-right" text="Ejecutar" width="50%" enabled="true" press="_onSegmentedButtonEjecutarPress"/>
-                    <SegmentedButtonItem icon="sap-icon://arrow-left" text="Salir" width="50%" enabled="true" press="_onSegmentedButtonItemPress1"/>
+                    <SegmentedButtonItem icon="sap-icon://arrow-right" text="Ejecutar" width="100%" enabled="true" press="_onSegmentedButtonEjecutarPress"/>
+                    <!--SegmentedButtonItem icon="sap-icon://arrow-left" text="Salir" width="50%" enabled="true" press="_onSegmentedButtonItemPress1"/-->
                 </items>
             </SegmentedButton>
         </content>

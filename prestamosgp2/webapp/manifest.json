@@ -145,13 +145,6 @@
 					"viewLevel": 12,
 					"transition": "slide"
 				},
-				"DetailHome": {
-					"controlAggregation": "detailPages",
-					"viewName": "DetailHome",
-					"viewId": "DetailHome",
-					"viewLevel": 11,
-					"transition": "slide"
-				},
 				"DetailVivienda2": {
 					"controlAggregation": "detailPages",
 					"viewName": "DetailVivienda2",
@@ -237,14 +230,6 @@
 					"target": [
 						"MasterPage1",
 						"DetailCuadro2"
-					]
-				},
-				{
-					"pattern": "MasterPage1/DetailHome",
-					"name": "DetailHome",
-					"target": [
-						"MasterPage1",
-						"DetailHome"
 					]
 				},
 				{

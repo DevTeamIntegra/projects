@@ -88,7 +88,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 				oCheck ? oMensualidades = parseInt(oMensualidades) + 1 : oMensualidades = oMensualidades; 
 				var oUserInfoModel = this.getOwnerComponent().getModel('UserInfo');
 				var oSalario = oUserInfoModel.oData.salario;
-				var oImporte = (parseFloat(oSalario)) / 3;
+				var oImporte = (parseFloat(oSalario)) * 3 / 12;
 				//oImporte = oImporte * ((parseInt(oMensualidades)-1)*3);
 				return {
 					tipoPrestamo : oTipo,
@@ -103,9 +103,6 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 				Utils.showErrorMsg("La fecha debe ser mayor a la actual");
 				return false;
 			}
-
-
-			
 		},
 		doNavigate: function(sRouteName, oBindingContext, fnPromiseResolve, sViaRelation) {
 			var sPath = (oBindingContext) ? oBindingContext.getPath() : null;

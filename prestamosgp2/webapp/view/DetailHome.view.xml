@@ -1,9 +1,0 @@
-<mvc:View xmlns:mvc="sap.ui.core.mvc" controllerName="prestamosgp2.controller.DetailHome" xmlns="sap.m">
-    <Page id="idTitleHome" title="" showHeader="true" showFooter="true" showNavButton="false">
-        <content>
-            <Image src="{oImg>/imagePath}" height="100%" width="100%" visible="true" densityAware="false"/>
-        </content>
-        <footer/>
-        <headerContent/>
-    </Page>
-</mvc:View>

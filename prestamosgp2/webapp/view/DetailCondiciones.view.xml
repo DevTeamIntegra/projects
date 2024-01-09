@@ -58,7 +58,7 @@
                     </ColumnListItem>
                 </items>
             </Table>
-            <Button id="idSBDetailCondiciones1" text="Acceder a Simulación" type="Accept" iconFirst="true" width="100%" enabled="true" visible="true" iconDensityAware="false" press="_onButtonPress"/>
+            <Button id="idSBDetailCondiciones1" text="Acceder a Simulación" type="Accept" iconFirst="true" width="100%" enabled="true" visible="true" iconDensityAware="false" press="_onButtonPress" icon="sap-icon://arrow-right"/>
             <!-- <List mode="SingleSelectMaster" width="100%" headerText="" footerText="" backgroundDesign="Solid" showSeparators="All" growing="true" growingThreshold="20" growingScrollToLoad="true" visible="true">
                 <infoToolbar>
                     <Toolbar width="100%" height="auto" design="Auto" visible="false" enabled="true">

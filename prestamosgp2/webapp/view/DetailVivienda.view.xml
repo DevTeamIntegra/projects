@@ -78,7 +78,7 @@
                     </InputListItem>
                 </items>
             </List>
-            <Button id="idSBDetailVivienda" text="Simular" type="Default" iconFirst="true" width="100%" enabled="true" visible="true" iconDensityAware="false" press="_onButtonPress"/>
+            <Button id="idSBDetailVivienda" icon="sap-icon://arrow-right" text="Simular" type="Default" iconFirst="true" width="100%" enabled="true" visible="true" iconDensityAware="false" press="_onButtonPress"/>
         </content>
         <footer>
             <OverflowToolbar width="100%" height="9rem" design="Auto" enabled="true" visible="true">

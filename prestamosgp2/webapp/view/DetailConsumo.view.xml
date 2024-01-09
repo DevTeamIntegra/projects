@@ -52,7 +52,7 @@
                     </InputListItem>
                 </items>
             </List>
-            <Button id="idSimularButtonConsumo1" text="Simular" type="Default" iconFirst="true" width="100%" enabled="true" visible="true" iconDensityAware="false" press="_onButtonSimularPress"/>
+            <Button id="idSimularButtonConsumo1" icon="sap-icon://arrow-right" text="Simular" type="Default" iconFirst="true" width="100%" enabled="true" visible="true" iconDensityAware="false" press="_onButtonSimularPress"/>
         </content>
         <footer>
             <OverflowToolbar width="100%" height="auto" design="Auto" enabled="true" visible="true">

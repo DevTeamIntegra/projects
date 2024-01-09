@@ -54,7 +54,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 				this.getOwnerComponent().setModelConsumo(models.getSimulacionConsumo(oEntries, this.getOwnerComponent().oToken, this.getView()));
 
 				var oBindingContext = oEvent.getSource().getBindingContext();
-				this.getOwnerComponent().setModel(new JSONModel(this.getEntries()), 'PreviousConsumoPageModel');
+				this.getOwnerComponent().setModel(new JSONModel(oEntries), 'PreviousConsumoPageModel');
 
 				return new Promise(function(fnResolve) {
 					oThis.getOwnerComponent().dialog.close();

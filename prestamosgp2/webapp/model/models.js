@@ -200,7 +200,13 @@ sap.ui.define([
                                     importe : prestamo.importe,
                                     estado : prestamo.estado,
                                     producto : prestamo.producto,
-                                    nproducto : "0" + count.toString()
+                                    nproducto : "0" + count.toString(),
+                                    carencia: prestamo.carencia,
+                                    plazo: prestamo.plazo,
+                                    vencimiento: prestamo.vencimiento,
+                                    crecimiento: prestamo.crecimiento,
+                                    dias: prestamo.dias,
+                                    tae : prestamo.tae
                                 })
                             });
                         } else {
@@ -230,6 +236,7 @@ sap.ui.define([
                     },
                     success: function (oData) {
                         if (oData) {
+                            oEntries["tae"] = oData.tipo
                             data = oData.listaCuotas;
                             //oView.setModel(new JSONModel(data), "SimuViviendaModel");
                         } else {
@@ -259,6 +266,7 @@ sap.ui.define([
                     },
                     success: function (oData) {
                         if (oData) {
+                            oEntries["tae"] = oData.tipo;
                             data = oData.listaCuotas;
                             //oView.setModel(new JSONModel(data), "SimuViviendaModel");
                         } else {
@@ -289,6 +297,7 @@ sap.ui.define([
                     },
                     success: function (oData) {
                         if (oData) {
+                            oEntries["tae"] = oData.tipo;
                             data = oData.listaCuotas;
                             //oView.setModel(new JSONModel(data), "SimuViviendaModel");
                         } else {

@@ -41,7 +41,7 @@
                         <cells>
                             <ObjectIdentifier title="PRESTATARIO: " text="{UserInfoComplete>/name}" titleActive="false" visible="true"/>
                             <ObjectIdentifier title="D.N.I.:" text="{UserInfoComplete>/dni}" titleActive="false" visible="true"/>
-                            <ObjectIdentifier title="TAE:" text="1,0006" titleActive="false" visible="true"/>
+                            <ObjectIdentifier title="TAE:" text="{PreviousCondicionesPageModel>/tae}" titleActive="false" visible="true"/>
                         </cells>
                     </ColumnListItem>
                     <ColumnListItem type="Active">

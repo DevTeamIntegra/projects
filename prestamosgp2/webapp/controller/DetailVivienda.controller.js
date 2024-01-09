@@ -52,10 +52,10 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 			var oEntries = this.getEntries();
 			if(oEntries != false){
 				oThis.getOwnerComponent().dialog.open();
-				this.getOwnerComponent().setModelVivienda(models.getSimulacionVivienda(this.getEntries(), this.getOwnerComponent().oToken, this.getView()));
+				this.getOwnerComponent().setModelVivienda(models.getSimulacionVivienda(oEntries, this.getOwnerComponent().oToken, this.getView()));
 
 				var oBindingContext = oEvent.getSource().getBindingContext();
-				this.getOwnerComponent().setModel(new JSONModel(this.getEntries()), 'PreviousViviendaPageModel');
+				this.getOwnerComponent().setModel(new JSONModel(oEntries), 'PreviousViviendaPageModel');
 
 				return new Promise(function(fnResolve) {
 					oThis.getOwnerComponent().dialog.close();

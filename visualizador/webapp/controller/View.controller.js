@@ -22,19 +22,12 @@ sap.ui.define(
           }
           this.getView().byId("_IDGenPDFViewer").setVisible(false);
         },
-
         onAfterRendering: function(){
-          /* this._getEjerciciosModelTEST();
-          this._getColoresModelTEST();
-          this._getTextosModelTEST();
-          this._getItemsModelTEST(); */
-            this._getEjerciciosModel();
-            this._getColoresModel();
-            this._getTextosModel();
-            this._getItemsModel();
-            //this._getUrlsModel();
-          },
-  
+          this._getColoresModel();
+          this._getTextosModel();
+          this._getItemsModel();
+          this._getEjerciciosModel();
+        },
         _changeSelectedFormat: function (aEjercicios) {
           aEjercicios.forEach((element) => {
             if (element.Selected == "true") {
@@ -58,7 +51,6 @@ sap.ui.define(
           var oBinding = oList.getBinding("items");
           oBinding.filter(aFilters);
         },
-  
         _getEjerciciosModel: function (sYear, sSelected) {
           //var oBusyDialog = new sap.m.BusyDialog("", {title : "Cargando el documento..."});
           //oBusyDialog.open();
@@ -75,7 +67,9 @@ sap.ui.define(
                 "sap-language" : sap.ui.getCore().getConfiguration().getLanguageTag()
               },
               success: function (oData) {
-                this.getView().byId("_IDGenPDFViewer").setVisible(true);
+                that.getView().byId("_IDGenPDFViewer").setVisible(true);
+                that.myColors ? that._setColors(that.myColors) : false;
+
                 let aEjercicios = new Array();
                 aEjercicios = oData.results;
                 if (aEjercicios.length === 0) {
@@ -92,14 +86,13 @@ sap.ui.define(
                 if (sSelected === undefined){
                     sSelected = "0";                    
                 }
-                var aFilename = this.getView().getModel("ItemSet").oData[sSelected].Texto;
+                var aFilename = that.getView().getModel("ItemSet").oData[sSelected].Texto;
                 var url = that._getPdfUrl(aEjercicios, sSelected, aFilename);
                 that.getView().byId("_IDGenPDFViewer").setSource(url);
                 that.getView().byId("_IDGenPDFViewer").setTitle(aFilename);
-                this.getView().setBusy(false);
+                that.getView().setBusy(false);
                 window.document.title = aFilename;
                 oGlobalBusyDialog.close();
-                this._setColors(this.myColors);
                 //that.getView().setVisible(true);
               }.bind(this),
               error: function (oError) {
@@ -123,7 +116,7 @@ sap.ui.define(
                 "sap-language" : sap.ui.getCore().getConfiguration().getLanguageTag()
               },
               success: function (oData) {
-                this.myColors = oData.results;
+                that.myColors = oData.results;
               }.bind(this),
               error: function (oError) {
                 MessageBox.error(this.getView().getModel("i18n").getResourceBundle().getText("view_controller_msg2"));

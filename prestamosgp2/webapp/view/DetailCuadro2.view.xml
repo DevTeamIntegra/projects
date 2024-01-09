@@ -41,7 +41,7 @@
                         <cells>
                             <ObjectIdentifier title="PRESTATARIO: " text="{UserInfoComplete>/name}" titleActive="false" visible="true"/>
                             <ObjectIdentifier title="D.N.I.:" text="{UserInfoComplete>/dni}" titleActive="false" visible="true"/>
-                            <ObjectIdentifier title="TAE:" text="1,0006" titleActive="false" visible="true"/>
+                            <ObjectIdentifier title="TAE:" text="{PreviousCuadroPageModel>/tae}" titleActive="false" visible="true"/>
                         </cells>
                     </ColumnListItem>
                     <ColumnListItem type="Active">
@@ -55,7 +55,7 @@
                         <cells>
                             <ObjectIdentifier title="IMPORTE PRÉSTAMO:" text="{PreviousCuadroPageModel>/importe}" titleActive="false" visible="true"/>
                             <ObjectIdentifier title="CARENCIA" text="{PreviousCuadroPageModel>/carencia}" titleActive="false" visible="true"/>
-                            <ObjectIdentifier title="DEMORAS" text="" titleActive="false" visible="true"/>
+                            <ObjectIdentifier title="CRECIMIENTO" text="{PreviousCuadroPageModel>/crecimiento}" titleActive="false" visible="true"/>
                             <layout:HorizontalLayout>
                                 <layout:content/>
                             </layout:HorizontalLayout>
@@ -66,9 +66,9 @@
                     </ColumnListItem>
                     <ColumnListItem type="Active">
                         <cells>
-                            <ObjectIdentifier title="VENCIMIENTOS:" text="MENSUALES" titleActive="false" visible="true"/>
-                            <ObjectIdentifier title="DIAS:" text="360" titleActive="false" visible="true"/>
-                            <ObjectIdentifier title="PLAZOS" text="{PreviousCuadroPageModel>/plazo}" titleActive="false" visible="true"/>
+                            <ObjectIdentifier title="VENCIMIENTOS:" text="{PreviousCuadroPageModel>/vencimiento}" titleActive="false" visible="true"/>
+                            <ObjectIdentifier title="DIAS:" text="{PreviousCuadroPageModel>/dias}" titleActive="false" visible="true"/>
+                            <ObjectIdentifier title="PLAZOS:" text="{PreviousCuadroPageModel>/plazo}" titleActive="false" visible="true"/>
                             <layout:HorizontalLayout>
                                 <layout:content/>
                             </layout:HorizontalLayout>
@@ -140,7 +140,7 @@
                             <ObjectIdentifier title="{CuadroPrestamoModel>fecha}" text="" titleActive="false" visible="true"/>
                             <Text text="{parts: [{path: 'CuadroPrestamoModel>disposicion'}], formatter: '.formatter.formatToFixed2'}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
                             <ObjectNumber number="{parts: [{path: 'CuadroPrestamoModel>capAmortizado'}], formatter: '.formatter.formatToFixed2'}" unit="" emphasized="true" state="None"/>
-                            <Text text="{parts: [{path: 'CuadroPrestamoModel>tipo'}], formatter: '.formatter.formatToFixed2'}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
+                            <Text text="{CuadroPrestamoModel>tipoInteres}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
                             <Text text="{parts: [{path: 'CuadroPrestamoModel>cuotas'}], formatter: '.formatter.formatToFixed2'}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
                             <Text text="{parts: [{path: 'CuadroPrestamoModel>amortizaciones'}], formatter: '.formatter.formatToFixed2'}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>
                             <Text text="{parts: [{path: 'CuadroPrestamoModel>intereses'}], formatter: '.formatter.formatToFixed2'}" width="auto" maxLines="1" wrapping="false" textAlign="Begin" textDirection="Inherit" visible="true"/>

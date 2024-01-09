@@ -275,7 +275,7 @@
 					"pattern": "",
 					"name": "default",
 					"target": [
-						"DetailHome",
+						"DetailCuadro",
 						"MasterPage1"
 					]
 				}

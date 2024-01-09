@@ -10,11 +10,16 @@
       "csrfProtection": false
     },
     {
-      "source": "^sap/opu/odata/sap/ZHR_XXX_0050_ODATA_SRV/(.*)$",
-      "target": "sap/opu/odata/sap/ZHR_XXX_0050_ODATA_SRV/$1",
+      "source": "^/sap/opu/odata/sap/ZHR_XXX_0050_ODATA_SRV/(.*)$",
+      "target": "/sap/opu/odata/sap/ZHR_XXX_0050_ODATA_SRV/$1",
       "destination": "ECP_GSV",
       "authenticationType": "none",
       "csrfProtection": false
+    },
+    {
+      "source": "^/user-api(.*)",
+      "target": "$1",
+      "service": "sap-approuter-userapi"
     },
     {
       "source": "^/resources/(.*)$",

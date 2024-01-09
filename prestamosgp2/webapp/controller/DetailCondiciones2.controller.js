@@ -119,10 +119,10 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 			var oEntries = this.getEntries();
 			if(oEntries != false){
 				oThis.getOwnerComponent().dialog.open();
-				this.getOwnerComponent().setModelCondiciones(models.getSimulacionCondiciones(this.getEntries(), this.getOwnerComponent().oToken, this.getView()));
+				this.getOwnerComponent().setModelCondiciones(models.getSimulacionCondiciones(oEntries, this.getOwnerComponent().oToken, this.getView()));
 
 				var oBindingContext = oEvent.getSource().getBindingContext();
-				this.getOwnerComponent().setModel(new JSONModel(this.getEntries()), 'PreviousCondicionesPageModel');
+				this.getOwnerComponent().setModel(new JSONModel(oEntries), 'PreviousCondicionesPageModel');
 
 				return new Promise(function(fnResolve) {
 					oThis.getOwnerComponent().dialog.close();
@@ -203,11 +203,11 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 				return false;
 			}
 			oInicioTramo =  Utils.getDate(oInicioTramo);
+			var oFinTramo = oThis.getView().byId("idFinTramo").getValue();
 			if(oFinTramo == '' || oFinTramo == undefined || oFinTramo == null){
 				Utils.showErrorMsg("La nueva fecha de fin nunca puede ir vacía")// Opcionalmente, puedes manejar un caso de error aquí
 				return false;
 			}
-			var oFinTramo = oThis.getView().byId("idFinTramo").getValue();
 			oFinTramo = Utils.getDate(oFinTramo);
 
 			if(oInicioPrestamo > oInicioTramo || oFinTramo < oInicioPrestamo){

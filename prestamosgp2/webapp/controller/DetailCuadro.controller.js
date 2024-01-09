@@ -250,12 +250,15 @@ sap.ui.define(["sap/ui/core/mvc/Controller",
 			var oAnyo = oPrimerPlazo.getFullYear();
 			return {
 				tipoPrestamo : oTipo,
-				carencia : 0,
-				crecimiento : 0,
+				carencia : oSelectedPrestamo.carencia,
+				crecimiento : oSelectedPrestamo.crecimiento,
 				mesInicio : oMes,
 				anioInicio : oAnyo,
 				importe : oSelectedPrestamo.importe,
-				plazo : diferenciaAniosRedondeada
+				dias: oSelectedPrestamo.dias,
+				vencimiento: oSelectedPrestamo.vencimiento,
+				plazo : oSelectedPrestamo.plazo,//diferenciaAniosRedondeada,
+				tae : oSelectedPrestamo.tae,
 			}
 		},
 

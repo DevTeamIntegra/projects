@@ -200,7 +200,13 @@ sap.ui.define([
                                     importe : prestamo.importe,
                                     estado : prestamo.estado,
                                     producto : prestamo.producto,
-                                    nproducto : "0" + count.toString()
+                                    nproducto : "0" + count.toString(),
+                                    carencia: prestamo.carencia,
+                                    plazo: prestamo.plazo,
+                                    vencimiento: prestamo.vencimiento,
+                                    crecimiento: prestamo.crecimiento,
+                                    dias: prestamo.dias,
+                                    tae : prestamo.tae
                                 })
                             });
                         } else {
@@ -230,6 +236,7 @@ sap.ui.define([
                     },
                     success: function (oData) {
                         if (oData) {
+                            oEntries["tae"] = oData.tipo
                             data = oData.listaCuotas;
                             //oView.setModel(new JSONModel(data), "SimuViviendaModel");
                         } else {
@@ -259,6 +266,7 @@ sap.ui.define([
                     },
                     success: function (oData) {
                         if (oData) {
+                            oEntries["tae"] = oData.tipo;
                             data = oData.listaCuotas;
                             //oView.setModel(new JSONModel(data), "SimuViviendaModel");
                         } else {
@@ -289,6 +297,7 @@ sap.ui.define([
                     },
                     success: function (oData) {
                         if (oData) {
+                            oEntries["tae"] = oData.tipo;
                             data = oData.listaCuotas;
                             //oView.setModel(new JSONModel(data), "SimuViviendaModel");
                         } else {
@@ -415,7 +424,7 @@ sap.ui.define([
                             'Fecha': Utils.toFormatDatePrint(e.fecha),
                             'Dispo': e.disposicion != null ? e.disposicion.toString() : e.disposiciones.toString(),
                             'CaAmor': e.capAmortizado.toString(),
-                            'TiInt': '1.6', // e.tipoInteres.toString()
+                            'TiInt': e.tipoInteres ? e.tipoInteres.toString() : e.tae ? e.tae.toString() : "0.00",
                             'Cuota': e.cuotas.toString(),
                             'Amort': e.amortizaciones.toString(),
                             'Inter': e.intereses.toString(),
@@ -429,7 +438,7 @@ sap.ui.define([
                     'Base64': '',
                     'Prestatario': oModel.name,
                     'Dni': oModel.dni,
-                    'Tae': "1.6", //oModel.tae.toString()
+                    'Tae': oModel.listaCuotas[1].tipoInteres ? oModel.listaCuotas[1].tipoInteres.toString() : oModel.listaCuotas[1].tae ? oModel.listaCuotas[1].tae.toString() : "0.00",
                     'Domicilio': oAddress,
                     'Poblacion': oModel.ciudad,
                     'Importe': oModel.importe,

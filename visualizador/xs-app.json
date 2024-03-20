@@ -13,7 +13,7 @@
       "source": "^/sap/opu/odata/sap/ZHR_XXX_0050_ODATA_SRV/(.*)$",
       "target": "/sap/opu/odata/sap/ZHR_XXX_0050_ODATA_SRV/$1",
       "destination": "ECP_GSV",
-      "authenticationType": "none",
+      "authenticationType": "xsuaa",
       "csrfProtection": false
     },
     {

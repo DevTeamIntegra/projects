@@ -57,7 +57,7 @@ sap.ui.define(
           let oGlobalBusyDialog = new sap.m.BusyDialog();
           oGlobalBusyDialog.open();
           var that = this;
-          sYear ? sYear = sYear : sYear  = new Date().getFullYear() - 1;
+          sYear ? sYear = sYear.replace(/[^0-9]/g, '') : false;
 
           let oModel = that.getView().getModel("MainModel"),
             oHttpParameters = {
@@ -124,6 +124,22 @@ sap.ui.define(
             };
   
           oModel.read("/ColoresSet", oHttpParameters);
+           /* var that = this;
+            sYear = sYear ? sYear : new Date().getFullYear() - 1;
+
+            jQuery.ajax({
+              type: "GET",
+              contentType: "application/json",
+              url: "sap/opu/odata/sap/ZHR_XXX_0050_ODATA_SRV/ColoresSet",
+              dataType: "json",
+              async: false,
+              success: function (data, textStatus, jqXHR) {
+                alert("OK!");
+              },
+              error: function (oError) {
+                alert("Error to post");
+              }
+            }); */
         },
 
         _getTextosModel: function (sYear, sSelected) {
@@ -200,8 +216,7 @@ sap.ui.define(
           var sURL = window.location.href;
           var selItems = this.getView().byId("list").getSelectedItems();
           var sYear = selItems[0].mProperties.title;
-          var sYear_split = sYear.split('ID');
-          var sYear_only = sYear_split[0];
+          var sYear_only = sYear.replace(/[^0-9]/g, '');
           this.myItems.forEach(e => {
             if(e.Texto.includes(sYear_only)){
               sYear = e.Id;
@@ -213,7 +228,8 @@ sap.ui.define(
           var selected = selItems[0].oParent._aSelectedPaths;
           var aSelected = selected[0].split("/")
           selected = aSelected[1];          
-          sURL.includes("flpSandbox") ? this._getEjerciciosModelTEST(sYear,selected) : this._getEjerciciosModel(sYear,selected);
+          //sURL.includes("flpSandbox") ? this._getEjerciciosModelTEST(sYear,selected) : this._getEjerciciosModel(sYear,selected);
+          this._getEjerciciosModel(sYear,selected)
         },
   
         _getPdfUrl: function (aEjercicios, sSelected,aFilename) {
@@ -221,36 +237,41 @@ sap.ui.define(
           //("Ejercicios --> ", aEjercicios[sSelected]);
           if(aEjercicios[0]){
             let docContent = aEjercicios[0].Pdf;
-            docContent = docContent.replace(/\n/g, "");
+            /* docContent = docContent.replace(/\n/g, "");
             docContent = docContent.replace(/\r/g, "");
             let fileContent = docContent;
-            let mimeType = "application/pdf";
+            let mimeType = "application/pdf"; */
             //Create doc url.
             var decodedPdfContent = atob(docContent);
             var byteArray = new Uint8Array(decodedPdfContent.length);
             for (var i = 0; i < decodedPdfContent.length; i++) {
               byteArray[i] = decodedPdfContent.charCodeAt(i);
             }
-            var blob = new Blob([byteArray.buffer], { type: mimeType });
+            var blob = new Blob([byteArray.buffer], { 
+              type: "application/pdf"
+            });
             var _pdfurl = URL.createObjectURL(blob);
-            if (this._PDFViewer) {
+            jQuery.sap.addUrlWhitelist("blob");
+
+            /* if (this._PDFViewer) {
               this._PDFViewer.destroy();
-            }
+            } */
             
-              this._PDFViewer = new sap.m.PDFViewer({
-                width: "auto",
-                source: _pdfurl,
-                title: aFilename
-              });
-              this._PDFViewer.setTitle(aFilename);
-              this._PDFViewer.downloadPDF = function() {
-                var link = document.createElement('a');
-                link.href = _pdfurl;
-                link.download= aFilename;
-                link.click();
-              }
-              jQuery.sap.addUrlWhitelist("blob");
-			        this.getView().setBusy(false);
+            this._PDFViewer = new sap.m.PDFViewer({
+              width: "auto"
+            });
+            /*this._PDFViewer.setTitle(aFilename);
+            this._PDFViewer.downloadPDF = function() {
+              var link = document.createElement('a');
+              link.href = _pdfurl;
+              link.download= aFilename;
+              link.click();
+            } */
+            this._PDFViewer.setSource(_pdfurl);
+            this._PDFViewer.setVisible(true);
+           
+              //jQuery.sap.addUrlWhitelist("blob");
+			      this.getView().setBusy(false);
             return _pdfurl;
           }
           MessageBox.error(this.getView().getModel("i18n").getResourceBundle().getText("view_controller_msg1"));

@@ -85,9 +85,9 @@
                                     <FlexBox id="_IDGenFlexBox1" direction="Column" renderType="Div" class="sapUiSmallMargin">
                                         <FlexBox id="_IDGenFlexBox2">
                                         </FlexBox>
-                                        <PDFViewer id="_IDGenPDFViewer" source="" title="" height="1000px">
+                                        <PDFViewer id="_IDGenPDFViewer" source="" title="" height="1000px" isTrustedSource="true">
                                             <layoutData>
-                                                <FlexItemData id="_IDGenFlexItemData1" growFactor="1" />
+                                                <FlexItemData id="_IDGenFlexItemData1" growFactor="1"/>
                                             </layoutData>
                                         </PDFViewer>
                                     </FlexBox>

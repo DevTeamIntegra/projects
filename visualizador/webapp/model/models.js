@@ -36,7 +36,7 @@ sap.ui.define([
                 }
                 oComponent.setModel(oModel, "userInfo");
                 try {
-                    oComponent.getModel("userInfo").oData.sfsf_userId[0];
+                    oComponent.getModel("userInfo").oData.name;
                     //loggedUser = myArray[1]//this.getView().getModel("userInfo").oData.uid[0]; //this.getView().getModel("userInfo").oData.name;
                 } catch (error) {
                     oComponent.getModel("userInfo").oData.name;
@@ -51,7 +51,7 @@ sap.ui.define([
         },
         getMoreUserInfo : function (oComponent){
             var oUserName;
-            oComponent.getModel("userInfo").getProperty("/sfsf_userId") ? oUserName = oComponent.getModel("userInfo").oData.sfsf_userId[0] : oComponent.getModel("userInfo").getProperty("/name") ? oUserName = oComponent.getModel("userInfo").oData.name : oUserName = oComponent.user.name;
+            oComponent.getModel("userInfo").getProperty("/sub") ? oUserName = oComponent.getModel("userInfo").getProperty("/sub")[0] : oUserName = oComponent.user.name;
             var url = Utils.getUrl();
             var query,data;
             var oThis = this;
@@ -59,7 +59,7 @@ sap.ui.define([
 
             //var oUserProxy = oThis.getUserProxy(oUserName);
             
-            query = url + "/odata/v2/User?$filter=username eq '"+oUserName+"'&$format=json&$expand=empInfo,empInfo/personNav,empInfo/personNav/homeAddressNavDEFLT,empInfo/personNav/nationalIdNav,empInfo/compInfoNav,proxy&$select=userId,firstName,lastName,defaultFullName,empInfo/personNav/homeAddressNavDEFLT,empInfo/personNav/nationalIdNav,empInfo,empInfo/compInfoNav,proxy";
+            query = url + "/odata/v2/User?$filter=username eq 'ICO"+oUserName+"'&$format=json&$expand=empInfo,empInfo/personNav,empInfo/personNav/homeAddressNavDEFLT,empInfo/personNav/nationalIdNav,empInfo/compInfoNav,proxy&$select=userId,firstName,lastName,defaultFullName,empInfo/personNav/homeAddressNavDEFLT,empInfo/personNav/nationalIdNav,empInfo,empInfo/compInfoNav,proxy";
             
             jQuery.ajax({
                 type: "GET",

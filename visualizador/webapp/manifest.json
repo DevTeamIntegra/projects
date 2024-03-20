@@ -17,9 +17,11 @@
         },
         "dataSources": {
             "mainService": {
-                "uri": "/sap/opu/odata/sap/ZHR_XXX_0050_ODATA_SRV",
+                "uri": "/sap/opu/odata/sap/ZHR_XXX_0050_ODATA_SRV/",
                 "type": "OData",
                 "settings": {
+                    "annotations": [],
+                    "localUri": "localService/metadata.xml",
                     "odataVersion": "2.0"
                 }
             }
